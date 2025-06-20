@@ -22,19 +22,12 @@ interface ApiService {
     @Multipart
     @POST("pelayanan-kantor-kelurahan/api/post.php")
     suspend fun postRegister(
-        @Part("register_user") register_user: RequestBody,
-        @Part("nama") nama: RequestBody,
-        @Part("alamat") alamat: RequestBody,
-        @Part("nomor_hp") nomor_hp: RequestBody,
-        @Part("no_ktp") no_ktp: RequestBody,
-        @Part("no_kk") no_kk: RequestBody,
-        @Part("tempat_lahir") tempat_lahir: RequestBody,
-        @Part("tanggal_lahir") tanggal_lahir: RequestBody,
-        @Part("jenis_kelamin") jenis_kelamin: RequestBody,
-        @Part("password") password: RequestBody,
-        @Part ktp: MultipartBody.Part,
-        @Part kk: MultipartBody.Part,
-        @Part fotoDiri: MultipartBody.Part,
+        @Part("register_user") register_user: String,
+        @Part("nama") nama: String,
+        @Part("alamat") alamat: String,
+        @Part("nomor_hp") nomor_hp: String,
+        @Part("username") username: String,
+        @Part("password") password: String,
     ): ResponseModel
 
 }
