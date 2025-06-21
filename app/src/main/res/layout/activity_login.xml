@@ -76,9 +76,9 @@
                     android:id="@+id/etNomorBpjs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nomor BPJS / No. KTP"
-                    android:inputType="number"
-                    android:maxLength="16"
+                    android:hint="Nomor BPJS / Username"
+                    android:inputType="text"
+                    android:maxLength="30"
                     android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
