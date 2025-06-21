@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pemantauan Kesehatan Anak</string>
+    <string name="app_name_login">Aplikasi Pemantauan Kesehatan Anak</string>
 </resources>
