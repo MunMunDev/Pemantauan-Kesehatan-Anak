@@ -1,7 +1,6 @@
 package com.abcd.pemantauankesehatananak.utils
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
@@ -224,6 +223,22 @@ class TanggalDanWaktu {
         }, year, month, day)
         mDatePicker.setTitle("Pilih Tanggal")
         mDatePicker.show()
+    }
+
+    fun hitungUsiaDalamBulan(tanggalLahir: Int, bulanLahir:Int, tahunLahir:Int): Int {
+        val calLahir = Calendar.getInstance().apply {
+            set(tahunLahir, bulanLahir - 1, tanggalLahir) // bulan 0-indexed
+        }
+        val calSekarang = Calendar.getInstance()
+
+        val tahunSelisih = calSekarang.get(Calendar.YEAR) - calLahir.get(Calendar.YEAR)
+        val bulanSelisih = calSekarang.get(Calendar.MONTH) - calLahir.get(Calendar.MONTH)
+        val hariSelisih = calSekarang.get(Calendar.DAY_OF_MONTH) - calLahir.get(Calendar.DAY_OF_MONTH)
+
+        var totalBulan = tahunSelisih * 12 + bulanSelisih
+        if (hariSelisih < 0) totalBulan -= 1
+
+        return totalBulan
     }
 
 }
