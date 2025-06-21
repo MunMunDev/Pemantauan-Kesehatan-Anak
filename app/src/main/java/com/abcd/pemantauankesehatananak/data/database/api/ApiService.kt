@@ -11,16 +11,16 @@ import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("pelayanan-kantor-kelurahan/api/get.php")
+    @GET("pemantauan-kesehatan-anak/api/get.php")
     suspend fun getUser(
         @Query("get_user") getUser: String,
-        @Query("no_ktp") no_ktp: String,
+        @Query("username") username: String,
         @Query("password") password: String
     ): UserModel
 
     //Register
     @Multipart
-    @POST("pelayanan-kantor-kelurahan/api/post.php")
+    @POST("pemantauan-kesehatan-anak/api/post.php")
     suspend fun postRegister(
         @Part("register_user") register_user: String,
         @Part("nama") nama: String,
