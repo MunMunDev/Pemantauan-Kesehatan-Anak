@@ -119,8 +119,8 @@ class LoginActivity : AppCompatActivity() {
         try {
             data.apply {
                 sharedPreferencesLogin.setLogin(
-                    idUser!!, nama!!, alamat!!, nomorHp!!, no_ktp!!, no_kk!!, tempat_lahir!!,
-                    tanggal_lahir!!, jenis_kelamin!!, password!!, sebagai!!
+                    idUser!!, no_bpjs!!, nama!!, nomorHp!!, alamat!!, nama_anak!!,
+                    tanggal_lahir!!, jk!!, username!!, password!!, sebagai!!
                 )
                 Toast.makeText(this@LoginActivity, "Berhasil", Toast.LENGTH_SHORT).show()
                 moveToMainActivity(sebagai!!)

@@ -8,6 +8,9 @@ class UserModel (
     @SerializedName("id_user")
     var idUser: Int? = null,
 
+    @SerializedName("no_bpjs")
+    var no_bpjs: String? = null,
+
     @SerializedName("nama")
     var nama: String? = null,
 
@@ -17,20 +20,17 @@ class UserModel (
     @SerializedName("nomor_hp")
     var nomorHp: String? = null,
 
-    @SerializedName("no_ktp")
-    var no_ktp: String? = null,
+    @SerializedName("nama_anak")
+    var nama_anak: String? = null,
 
-    @SerializedName("no_kk")
-    var no_kk: String? = null,
-
-    @SerializedName("tempat_lahir")
-    var tempat_lahir: String? = null,
+    @SerializedName("jk")
+    var jk: String? = null,
 
     @SerializedName("tanggal_lahir")
     var tanggal_lahir: String? = null,
 
-    @SerializedName("jenis_kelamin")
-    var jenis_kelamin: String? = null,
+    @SerializedName("username")
+    var username: String? = null,
 
     @SerializedName("password")
     var password: String? = null,
@@ -55,14 +55,14 @@ class UserModel (
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeValue(idUser)
+        parcel.writeString(no_bpjs)
         parcel.writeString(nama)
         parcel.writeString(alamat)
         parcel.writeString(nomorHp)
-        parcel.writeString(no_ktp)
-        parcel.writeString(no_kk)
-        parcel.writeString(tempat_lahir)
+        parcel.writeString(nama_anak)
+        parcel.writeString(jk)
         parcel.writeString(tanggal_lahir)
-        parcel.writeString(jenis_kelamin)
+        parcel.writeString(username)
         parcel.writeString(password)
         parcel.writeString(sebagai)
     }

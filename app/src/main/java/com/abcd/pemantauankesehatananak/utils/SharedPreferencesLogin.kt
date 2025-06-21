@@ -4,37 +4,35 @@ import android.content.Context
 
 class SharedPreferencesLogin(val context: Context) {
     val keyIdUser = "keyIdUser"
+    val keyNoBpjs = "keyNoBpjs"
     val keyNama = "keyNama"
-    val keyAlamat = "keyAlamat"
     val keyNomorHp = "keyNomorHp"
-    val keyNoKtp = "keyNoKtp"
-    val keyNoKK = "keyNoKK"
-    val keyTempatLahir = "keyTempatLahir"
+    val keyAlamat = "keyAlamat"
+    val keyNamaAnak = "keyNamaAnak"
     val keyTanggalLahir = "keyTanggalLahir"
-    val keyJenisKelamin = "keyJenisKelamin"
+    val keyJk = "keyJk"
+    val keyUsername = "keyUsername"
     val keyPassword = "keyPassword"
     val keySebagai = "keySebagai"
-    val keyLogo = "keyLogo"
-    val keyDeskripsi = "keyDeskripsi"
 
     var sharedPref = context.getSharedPreferences("sharedpreference_login", Context.MODE_PRIVATE)
     var editPref = sharedPref.edit()
 
     fun setLogin(
-        id_user:Int, nama:String, alamat:String, nomorHp:String, noKtp:String,
-        noKK:String, tempatLahir:String, tanggalLahir:String, jenisKelamin:String,
+        id_user:Int, noBpjs:String, nama:String, nomorHp:String, alamat:String, namaAnak:String,
+        tanggalLahir:String, jenisKelamin:String, username:String,
         password:String, sebagai:String
     ){
         editPref.apply{
             putInt(keyIdUser, id_user)
+            putString(keyNoBpjs, noBpjs)
             putString(keyNama, nama)
             putString(keyNomorHp, nomorHp)
             putString(keyAlamat, alamat)
-            putString(keyNoKtp, noKtp)
-            putString(keyNoKK, noKK)
-            putString(keyTempatLahir, tempatLahir)
+            putString(keyNamaAnak, namaAnak)
             putString(keyTanggalLahir, tanggalLahir)
-            putString(keyJenisKelamin, jenisKelamin)
+            putString(keyJk, jenisKelamin)
+            putString(keyUsername, username)
             putString(keyPassword, password)
             putString(keySebagai, sebagai)
 
@@ -45,29 +43,29 @@ class SharedPreferencesLogin(val context: Context) {
     fun getIdUser(): Int{
         return sharedPref.getInt(keyIdUser, 0)
     }
+    fun keyNoBpjs():String{
+        return sharedPref.getString(keyNoBpjs, "").toString()
+    }
     fun getNama():String{
         return sharedPref.getString(keyNama, "").toString()
-    }
-    fun getAlamat():String{
-        return sharedPref.getString(keyAlamat, "").toString()
     }
     fun getNomorHp():String{
         return sharedPref.getString(keyNomorHp, "").toString()
     }
-    fun getNoKtp():String{
-        return sharedPref.getString(keyNoKtp, "").toString()
+    fun getAlamat():String{
+        return sharedPref.getString(keyAlamat, "").toString()
     }
-    fun getNoKK(): String{
-        return sharedPref.getString(keyNoKK, "").toString()
-    }
-    fun getTempatLahir():String{
-        return sharedPref.getString(keyTempatLahir, "").toString()
+    fun getNamAnak():String{
+        return sharedPref.getString(keyNamaAnak, "").toString()
     }
     fun getTanggalLahir(): String{
         return sharedPref.getString(keyTanggalLahir, "").toString()
     }
     fun getJenisKelamin():String{
-        return sharedPref.getString(keyJenisKelamin, "").toString()
+        return sharedPref.getString(keyJk, "").toString()
+    }
+    fun getUsername():String{
+        return sharedPref.getString(keyUsername, "").toString()
     }
     fun getPassword(): String{
         return sharedPref.getString(keyPassword, "").toString()
