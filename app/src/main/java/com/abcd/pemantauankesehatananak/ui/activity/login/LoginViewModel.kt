@@ -20,13 +20,13 @@ class LoginViewModel @Inject constructor(
     private var _user = MutableLiveData<UIState<UserModel>>()
 
     fun fetchUser(
-        noKtp: String, password: String
+        noBpjsUsername: String, password: String
     ){
         viewModelScope.launch(Dispatchers.IO) {
             _user.postValue(UIState.Loading)
             delay(1_000)
             try {
-                val data = api.getUser("", noKtp, password)
+                val data = api.getUser("", noBpjsUsername, password)
                 _user.postValue(UIState.Success(data))
             } catch (ex: Exception){
                 _user.postValue(UIState.Failure("Error : ${ex.message}"))
