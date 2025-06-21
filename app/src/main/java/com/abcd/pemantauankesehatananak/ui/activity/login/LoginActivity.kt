@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
     private fun validateInput(): Boolean {
         binding.apply {
             if (etNomorBpjs.text.toString().isEmpty()) {
-                etNomorBpjs.error = "Nomor KTP harus diisi"
+                etNomorBpjs.error = "Nomor No BPJS / Username harus diisi"
                 return false
             }
             if (etPassword.text.toString().isEmpty()) {
@@ -71,17 +71,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun performLogin() {
-        var noKtp: String
+        var noBpjUsername: String
         var password: String
         binding.apply {
-            noKtp = etNomorBpjs.text.toString()
+            noBpjUsername = etNomorBpjs.text.toString()
             password = etPassword.text.toString()
         }
-        fetchUser(noKtp, password)
+        fetchUser(noBpjUsername, password)
     }
 
-    private fun fetchUser(noKtp: String, password: String){
-        viewModel.fetchUser(noKtp, password)
+    private fun fetchUser(noBpjUsername: String, password: String){
+        viewModel.fetchUser(noBpjUsername, password)
     }
 
     private fun getUser(){
@@ -99,14 +99,14 @@ class LoginActivity : AppCompatActivity() {
             setDataSharedPreferences(data)
         } else{
             Toast.makeText(this@LoginActivity, "Data tidak ditemukan \n" +
-                    "Pastikan No KTP dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
+                    "Pastikan No Bpjs/Username dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
         }
         loading.alertDialogCancel()
     }
 
     private fun setFailureFetchUser(message: String) {
         Toast.makeText(this@LoginActivity, "Data tidak ditemukan \n" +
-                "Pastikan No KTP dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
+                "Pastikan No Bpjs/Username dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
         Log.d("LoginTAG", "setFailureFetchUser: $message")
         loading.alertDialogCancel()
     }
