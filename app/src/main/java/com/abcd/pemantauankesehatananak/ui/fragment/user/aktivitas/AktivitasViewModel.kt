@@ -1,4 +1,4 @@
-package com.abcd.pemantauankesehatananak.ui.fragment.user.rekomendasi
+package com.abcd.pemantauankesehatananak.ui.fragment.user.aktivitas
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
