@@ -225,7 +225,12 @@ class TanggalDanWaktu {
         mDatePicker.show()
     }
 
-    fun hitungUsiaDalamBulan(tanggalLahir: Int, bulanLahir:Int, tahunLahir:Int): Int {
+    fun hitungUsiaDalamBulan(tanggal: String): Int {
+        val arrayTanggal = tanggal.split("-")
+        val tanggalLahir = arrayTanggal[2].trim().toInt()
+        val bulanLahir = arrayTanggal[2].trim().toInt()
+        val tahunLahir = arrayTanggal[2].trim().toInt()
+
         val calLahir = Calendar.getInstance().apply {
             set(tahunLahir, bulanLahir - 1, tanggalLahir) // bulan 0-indexed
         }
