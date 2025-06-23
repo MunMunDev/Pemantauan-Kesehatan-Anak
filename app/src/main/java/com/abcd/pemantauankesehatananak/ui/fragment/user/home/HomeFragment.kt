@@ -67,10 +67,10 @@ class HomeFragment : Fragment() {
     private fun setButton() {
         binding.apply {
             btnAktivitas.setOnClickListener {
-                (activity as MainActivity).setRekomendasiFragment()
+                (activity as MainActivity).setAktivitasFragment()
             }
             btnMilestone.setOnClickListener {
-                (activity as MainActivity).setPerkembanganFragment()
+                (activity as MainActivity).setMilestoneFragment()
             }
         }
     }
