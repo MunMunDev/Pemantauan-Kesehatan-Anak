@@ -1,36 +1,62 @@
 package com.abcd.pemantauankesehatananak.adapter
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
-import com.abcd.pemantauankesehatananak.databinding.ItemMilestoneBinding
+import com.abcd.pemantauankesehatananak.databinding.ItemListMilestoneBinding
 import com.abcd.pemantauankesehatananak.utils.OnClickItem
 
 class MilestoneAdapter(
-    private val list: List<MilestoneModel>,
-    private val onCheckChanged: (MilestoneModel, Boolean) -> Unit,
+    private val listMilestone: List<MilestoneModel>,
     private val onClick: OnClickItem.ClickMilestone,
     private val home: Boolean
 ) : RecyclerView.Adapter<MilestoneAdapter.MilestoneViewHolder>() {
 
-    inner class MilestoneViewHolder(val binding: ItemMilestoneBinding)
+    private var tempMilestone = listMilestone
+    @SuppressLint("NotifyDataSetChanged", "DefaultLocale")
+    fun searchData(kata: String){
+        val vKata = kata.lowercase().trim()
+        val data = listMilestone.filter {
+            (
+                it.deskripsi!!.lowercase().trim().contains(vKata)
+                or
+                it.kategori?.kategori!!.lowercase().trim().contains(vKata)
+                or
+                it.usia_ideal!!.toString().contains(vKata)
+            )
+        }
+        tempMilestone = data as ArrayList<MilestoneModel>
+        notifyDataSetChanged()
+    }
+
+    inner class MilestoneViewHolder(val binding: ItemListMilestoneBinding)
         : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MilestoneViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemMilestoneBinding.inflate(inflater, parent, false)
+        val binding = ItemListMilestoneBinding.inflate(inflater, parent, false)
         return MilestoneViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MilestoneViewHolder, position: Int) {
-        val milestone = list[position]
-        holder.binding.tvDeskripsi.text = milestone.deskripsi
-        holder.binding.cbMilestone.isChecked = milestone.sudah_tercapai == 1
-        holder.binding.cbMilestone.setOnCheckedChangeListener { _, isChecked ->
-            onCheckChanged(milestone, isChecked)
+        val milestone = tempMilestone[position]
+        holder.binding.apply {
+            tvDeskripsi.text = milestone.deskripsi?.trim()
+            tvKategori.text = milestone.kategori?.kategori
+            tvUsia.text = milestone.usia_ideal?.toString()+" Bulan"
+            cbMilestone.setOnCheckedChangeListener(null)
+            cbMilestone.isChecked = milestone.sudah_tercapai == 1
+
+            cbMilestone.setOnCheckedChangeListener { _, isChecked ->
+                onClick.clickMilestone(milestone)
+            }
         }
     }
 
-    override fun getItemCount() = if(home) 3 else list.size
+    override fun getItemCount() = if(home) 3 else tempMilestone.size
 }

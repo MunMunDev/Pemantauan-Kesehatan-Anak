@@ -1,8 +1,8 @@
 package com.abcd.pemantauankesehatananak.data.repository
 
 import com.abcd.pemantauankesehatananak.data.database.api.ApiService
-import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
+import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,5 +14,12 @@ class MilestoneRepository @Inject constructor(
         idUser: Int
     ): ArrayList<MilestoneModel> {
         return api.getMilestone("", idUser)
+    }
+
+    suspend fun postUpdateCheck(
+        idUser: Int,
+        idAktivitas: Int,
+    ): ResponseModel {
+        return api.postUpdateCheckMilestone("", idUser, idAktivitas)
     }
 }

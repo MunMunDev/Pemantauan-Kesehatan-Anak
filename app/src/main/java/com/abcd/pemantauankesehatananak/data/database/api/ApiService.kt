@@ -4,16 +4,10 @@ import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import com.abcd.pemantauankesehatananak.data.model.UserModel
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.Response
-import okhttp3.ResponseBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.Multipart
 import retrofit2.http.POST
-import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -37,6 +31,7 @@ interface ApiService {
         @Query("id_user") id_user: Int,
     ): ArrayList<MilestoneModel>
 
+    // post
     //Register
     @FormUrlEncoded
     @POST("pemantauan-kesehatan-anak/api/post.php")
@@ -50,11 +45,20 @@ interface ApiService {
     ): ResponseModel
 
     @FormUrlEncoded
-    @POST("simpan_riwayat.php")
-    suspend fun simpanRiwayat(
-        @Field("user_id") userId: Int,
-        @Field("anak_id") anakId: Int,
-        @Field("aktivitas_id") aktivitasId: Int
+    @POST("pemantauan-kesehatan-anak/api/post.php")
+    suspend fun postUpdateCheckAktivitas(
+        @Field("post_update_check_aktivitas") post_update_check_aktivitas: String,
+        @Field("id_user") id_user: Int,
+        @Field("id_aktivitas") id_aktivitas: Int,
+        @Field("check") check: Int
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("pemantauan-kesehatan-anak/api/post.php")
+    suspend fun postUpdateCheckMilestone(
+        @Field("post_update_check_milestone") post_update_check_milestone: String,
+        @Field("id_user") id_user: Int,
+        @Field("id_milestone") id_milestone: Int,
     ): ResponseModel
 
 }

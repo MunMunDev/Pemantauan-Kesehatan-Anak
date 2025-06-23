@@ -3,8 +3,8 @@ package com.abcd.pemantauankesehatananak.data.model
 import com.google.gson.annotations.SerializedName
 
 class MilestoneModel (
-    @SerializedName("id_aktivitas")
-    val id_aktivitas: Int? = null ,
+    @SerializedName("id_milestone")
+    val id_milestone: Int? = null ,
 
     @SerializedName("deskripsi")
     var deskripsi: String? = null,
