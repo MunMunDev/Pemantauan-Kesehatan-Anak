@@ -28,12 +28,20 @@ class MainActivity : AppCompatActivity() {
                     setHomeFragment()
                     true
                 }
-                R.id.menu_rekomendasi -> {
-                    setRekomendasiFragment()
+                R.id.menu_aktivitas -> {
+                    setAktivitasFragment()
                     true
                 }
-                R.id.menu_perkembangan -> {
-                    setPerkembanganFragment()
+                R.id.menu_milestone -> {
+                    setMilestoneFragment()
+                    true
+                }
+                R.id.menu_milestone -> {
+                    setMilestoneFragment()
+                    true
+                }
+                R.id.menu_profile -> {
+                    setProfileFragment()
                     true
                 }
                 else -> false
@@ -41,21 +49,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setHomeFragment(){
+    private fun setHomeFragment(){
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, HomeFragment())
             .commit()
     }
 
-    fun setRekomendasiFragment(){
+    fun setAktivitasFragment(){
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, AktivitasFragment())
             .commit()
     }
 
-    fun setPerkembanganFragment(){
+    fun setMilestoneFragment(){
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, MilestoneFragment())
             .commit()
+    }
+
+    fun setProfileFragment(){
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, ProfileFragment())
+//            .commit()
     }
 }
