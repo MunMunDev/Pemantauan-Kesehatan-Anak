@@ -1,5 +1,6 @@
 package com.abcd.pemantauankesehatananak.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,12 +13,32 @@ import com.abcd.pemantauankesehatananak.utils.OnClickItem
 import com.bumptech.glide.Glide
 import java.net.MalformedURLException
 import java.net.URL
+import java.util.Locale
 
 class AktivitasAdapter(
-    private val list: ArrayList<AktivitasModel>,
+    private val listAktivitas: ArrayList<AktivitasModel>,
     private val onClick: OnClickItem.ClickAktivitas,
     private val home: Boolean
 ) : RecyclerView.Adapter<AktivitasAdapter.AktivitasViewHolder>() {
+
+    private var tempAktivitas = listAktivitas
+    @SuppressLint("NotifyDataSetChanged", "DefaultLocale")
+    fun searchData(kata: String){
+        val vKata = kata.lowercase().trim()
+        val data = listAktivitas.filter {
+            (
+                it.judul!!.lowercase().trim().contains(vKata)
+                or
+                it.deskripsi!!.lowercase().trim().contains(vKata)
+                or
+                it.kategori?.kategori!!.lowercase().trim().contains(vKata)
+                or
+                it.usia_minimal!!.lowercase().trim().contains(vKata)
+            )
+        }
+        tempAktivitas = data as ArrayList<AktivitasModel>
+        notifyDataSetChanged()
+    }
 
     inner class AktivitasViewHolder(val binding: ItemListAktivitasBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -28,7 +49,7 @@ class AktivitasAdapter(
     }
 
     override fun onBindViewHolder(holder: AktivitasViewHolder, position: Int) {
-        val aktivitas = list[position]
+        val aktivitas = tempAktivitas[position]
         holder.apply {
             binding.apply {
                 tvJudul.text = aktivitas.judul
@@ -55,7 +76,7 @@ class AktivitasAdapter(
 
     }
 
-    override fun getItemCount() = if(home) 3 else list.size
+    override fun getItemCount() = if(home) 3 else tempAktivitas.size
 
     private fun searchIdUrlVideo(urlVideo: String): String {
         var url = ""
