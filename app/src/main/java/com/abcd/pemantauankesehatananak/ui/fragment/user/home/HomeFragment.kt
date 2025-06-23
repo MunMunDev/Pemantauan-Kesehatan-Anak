@@ -146,7 +146,7 @@ class HomeFragment : Fragment() {
     // Milestone
     private fun setAdapterMilestone(data: ArrayList<MilestoneModel>) {
         adapterMilestone = MilestoneAdapter(data, object: OnClickItem.ClickMilestone{
-            override fun clickMilestone(milestone: MilestoneModel, checked: Boolean) {
+            override fun clickMilestone(milestone: MilestoneModel) {
 
             }
         }, true)
