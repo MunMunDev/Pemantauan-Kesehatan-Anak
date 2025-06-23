@@ -7,6 +7,7 @@ import com.abcd.pemantauankesehatananak.databinding.ActivityMainBinding
 import com.abcd.pemantauankesehatananak.ui.fragment.user.aktivitas.AktivitasFragment
 import com.abcd.pemantauankesehatananak.ui.fragment.user.home.HomeFragment
 import com.abcd.pemantauankesehatananak.ui.fragment.user.perkembangan.MilestoneFragment
+import com.abcd.pemantauankesehatananak.ui.fragment.user.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,8 +69,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setProfileFragment(){
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, ProfileFragment())
-//            .commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, ProfileFragment())
+            .commit()
     }
 }
