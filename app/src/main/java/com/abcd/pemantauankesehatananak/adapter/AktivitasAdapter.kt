@@ -6,14 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abcd.pemantauankesehatananak.R
 import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
-import com.abcd.pemantauankesehatananak.databinding.ItemAktivitasBinding
 import com.abcd.pemantauankesehatananak.databinding.ItemListAktivitasBinding
-import com.abcd.pemantauankesehatananak.utils.Constant
 import com.abcd.pemantauankesehatananak.utils.OnClickItem
 import com.bumptech.glide.Glide
-import java.net.MalformedURLException
-import java.net.URL
-import java.util.Locale
 
 class AktivitasAdapter(
     private val listAktivitas: ArrayList<AktivitasModel>,
