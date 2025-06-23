@@ -1,6 +1,7 @@
 package com.abcd.pemantauankesehatananak.data.database.api
 
 import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
+import com.abcd.pemantauankesehatananak.data.model.KategoriModel
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import com.abcd.pemantauankesehatananak.data.model.UserModel
@@ -17,6 +18,11 @@ interface ApiService {
         @Query("username") username: String,
         @Query("password") password: String
     ): UserModel
+
+    @GET("pemantauan-kesehatan-anak/api/get.php")
+    suspend fun getKategori(
+        @Query("get_kategori") get_kategori: String,
+    ): ArrayList<KategoriModel>
 
     @GET("pemantauan-kesehatan-anak/api/get.php")
     suspend fun getAktivitas(

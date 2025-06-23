@@ -2,6 +2,7 @@ package com.abcd.pemantauankesehatananak.utils
 
 import android.view.View
 import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
+import com.abcd.pemantauankesehatananak.data.model.KategoriModel
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
 import com.abcd.pemantauankesehatananak.data.model.UserModel
 
@@ -14,6 +15,11 @@ interface OnClickItem {
     interface ClickMilestone{
         fun clickMilestone(
             milestone: MilestoneModel
+        )
+    }
+    interface ClickKategori{
+        fun clickKategori(
+            kategori: KategoriModel
         )
     }
 

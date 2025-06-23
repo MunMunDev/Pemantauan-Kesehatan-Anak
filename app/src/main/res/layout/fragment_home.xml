@@ -91,10 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <include layout="@layout/sm_item_list_milestone"/>
-<!--                    <include layout="@layout/sm_item_list_milestone"/>-->
-<!--                    <include layout="@layout/sm_item_list_milestone"/>-->
-<!--                    <include layout="@layout/sm_item_list_milestone"/>-->
+                    <include layout="@layout/sm_item_list_aktivitas"/>
+                    <include layout="@layout/sm_item_list_aktivitas"/>
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -143,10 +141,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <include layout="@layout/sm_item_list_milestone"/>
-                    <include layout="@layout/sm_item_list_milestone"/>
-                    <include layout="@layout/sm_item_list_milestone"/>
-                    <include layout="@layout/sm_item_list_milestone"/>
+                    <include layout="@layout/sm_item_list_aktivitas"/>
+                    <include layout="@layout/sm_item_list_aktivitas"/>
+                    <include layout="@layout/sm_item_list_aktivitas"/>
+                    <include layout="@layout/sm_item_list_aktivitas"/>
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
 
