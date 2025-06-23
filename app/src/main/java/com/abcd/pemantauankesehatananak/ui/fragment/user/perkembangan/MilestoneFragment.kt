@@ -86,7 +86,7 @@ class MilestoneFragment : Fragment() {
     private fun getMilestone() {
         viewModel.getMilestone.observe(viewLifecycleOwner){result->
             when(result){
-                is UIState.Loading->{}
+                is UIState.Loading-> setStartShimmerMilestone()
                 is UIState.Success-> setSuccessFetchMilestone(result.data)
                 is UIState.Failure-> setFailureFetchMilestone(result.message)
             }
@@ -99,10 +99,12 @@ class MilestoneFragment : Fragment() {
         } else{
             Toast.makeText(requireContext(), "Tidak ada data", Toast.LENGTH_SHORT).show()
         }
+        setStoptShimmerMilestone()
     }
 
     private fun setFailureFetchMilestone(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        setStoptShimmerMilestone()
     }
 
     private fun setAdapter(data: ArrayList<MilestoneModel>) {
@@ -145,5 +147,20 @@ class MilestoneFragment : Fragment() {
     private fun setFailureUpdateCheck(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         loading.alertDialogCancel()
+    }
+
+    private fun setStartShimmerMilestone(){
+        binding.apply {
+            smMilestone.startShimmer()
+            smMilestone.visibility = View.VISIBLE
+            rvMilestone.visibility = View.GONE
+        }
+    }
+    private fun setStoptShimmerMilestone(){
+        binding.apply {
+            smMilestone.stopShimmer()
+            smMilestone.visibility = View.GONE
+            rvMilestone.visibility = View.VISIBLE
+        }
     }
 }
