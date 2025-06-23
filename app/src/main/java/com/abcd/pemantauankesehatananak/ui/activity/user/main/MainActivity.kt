@@ -4,10 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.abcd.pemantauankesehatananak.R
 import com.abcd.pemantauankesehatananak.databinding.ActivityMainBinding
+import com.abcd.pemantauankesehatananak.ui.fragment.user.aktivitas.AktivitasFragment
 import com.abcd.pemantauankesehatananak.ui.fragment.user.home.HomeFragment
-import com.abcd.pemantauankesehatananak.ui.fragment.user.panduan.PanduanFragment
-import com.abcd.pemantauankesehatananak.ui.fragment.user.perkembangan.PerkembanganFragment
-import com.abcd.pemantauankesehatananak.ui.fragment.user.rekomendasi.RekomendasiFragment
+import com.abcd.pemantauankesehatananak.ui.fragment.user.perkembangan.MilestoneFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,13 +49,13 @@ class MainActivity : AppCompatActivity() {
 
     fun setRekomendasiFragment(){
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, RekomendasiFragment())
+            .replace(R.id.fragment_container, AktivitasFragment())
             .commit()
     }
 
     fun setPerkembanganFragment(){
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, PerkembanganFragment())
+            .replace(R.id.fragment_container, MilestoneFragment())
             .commit()
     }
 }
