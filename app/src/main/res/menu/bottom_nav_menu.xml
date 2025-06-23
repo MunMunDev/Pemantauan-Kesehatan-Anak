@@ -5,11 +5,11 @@
         android:icon="@drawable/ic_home"
         android:title="Home"/>
     <item
-        android:id="@+id/menu_rekomendasi"
-        android:icon="@drawable/ic_rekomended2"
-        android:title="Rekomendasi"/>
+        android:id="@+id/menu_aktivitas"
+        android:icon="@drawable/ic_aktivitas"
+        android:title="Aktivitas"/>
     <item
-        android:id="@+id/menu_perkembangan"
+        android:id="@+id/menu_milestone"
         android:icon="@drawable/ic_perkembangan2"
         android:title="Perkembangan"/>
     <item
