@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.abcd.pemantauankesehatananak.R
 import com.abcd.pemantauankesehatananak.adapter.AktivitasAdapter
 import com.abcd.pemantauankesehatananak.adapter.MilestoneAdapter
 import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
@@ -68,9 +69,23 @@ class HomeFragment : Fragment() {
         binding.apply {
             btnAktivitas.setOnClickListener {
                 (activity as MainActivity).setAktivitasFragment()
+                (activity as MainActivity).binding.bottomNavigation.selectedItemId = R.id.menu_aktivitas
             }
             btnMilestone.setOnClickListener {
                 (activity as MainActivity).setMilestoneFragment()
+                (activity as MainActivity).binding.bottomNavigation.selectedItemId = R.id.menu_milestone
+            }
+            llAktivitas.setOnClickListener {
+                (activity as MainActivity).setAktivitasFragment()
+                (activity as MainActivity).binding.bottomNavigation.selectedItemId = R.id.menu_aktivitas
+            }
+            llMilestone.setOnClickListener {
+                (activity as MainActivity).setMilestoneFragment()
+                (activity as MainActivity).binding.bottomNavigation.selectedItemId = R.id.menu_milestone
+            }
+            llProfile.setOnClickListener {
+                (activity as MainActivity).setProfileFragment()
+                (activity as MainActivity).binding.bottomNavigation.selectedItemId = R.id.menu_profile
             }
         }
     }
