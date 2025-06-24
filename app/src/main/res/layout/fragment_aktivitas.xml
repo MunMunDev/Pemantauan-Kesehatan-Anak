@@ -20,13 +20,69 @@
         android:layout_marginEnd="14dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rvKategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:nestedScrollingEnabled="true"
+        android:visibility="gone"
+        tools:listitem="@layout/item_list_kategori"
+        tools:itemCount="1"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/smKategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <include layout="@layout/sm_item_list_kategori"/>
+                <include layout="@layout/sm_item_list_kategori"/>
+                <include layout="@layout/sm_item_list_kategori"/>
+                <include layout="@layout/sm_item_list_kategori"/>
+                <include layout="@layout/sm_item_list_kategori"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAktivitas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="6dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
         tools:listitem="@layout/item_list_aktivitas"
-        tools:itemCount="5"/>
+        tools:itemCount="5"
+        android:visibility="gone"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/smAktivitas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/sm_item_list_aktivitas"/>
+            <include layout="@layout/sm_item_list_aktivitas"/>
+            <include layout="@layout/sm_item_list_aktivitas"/>
+            <include layout="@layout/sm_item_list_aktivitas"/>
+            <include layout="@layout/sm_item_list_aktivitas"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </LinearLayout>

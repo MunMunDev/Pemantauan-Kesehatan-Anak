@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abcd.pemantauankesehatananak.R
 import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
+import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
 import com.abcd.pemantauankesehatananak.databinding.ItemListAktivitasBinding
 import com.abcd.pemantauankesehatananak.utils.OnClickItem
 import com.bumptech.glide.Glide
@@ -17,6 +18,7 @@ class AktivitasAdapter(
 ) : RecyclerView.Adapter<AktivitasAdapter.AktivitasViewHolder>() {
 
     private var tempAktivitas = listAktivitas
+    private var tempAktivitas2 = tempAktivitas
     @SuppressLint("NotifyDataSetChanged", "DefaultLocale")
     fun searchData(kata: String){
         val vKata = kata.lowercase().trim()
@@ -25,13 +27,25 @@ class AktivitasAdapter(
                 it.judul!!.lowercase().trim().contains(vKata)
                 or
                 it.deskripsi!!.lowercase().trim().contains(vKata)
-                or
-                it.kategori?.kategori!!.lowercase().trim().contains(vKata)
+//                or
+//                it.kategori?.kategori!!.lowercase().trim().contains(vKata)
                 or
                 it.usia_minimal!!.lowercase().trim().contains(vKata)
             )
         }
         tempAktivitas = data as ArrayList<AktivitasModel>
+        tempAktivitas2 = tempAktivitas
+        notifyDataSetChanged()
+    }
+
+    fun searchKategori(kata: String){
+        val vKata = kata.lowercase().trim()
+        val data = tempAktivitas.filter {
+            (
+                it.kategori?.kategori!!.lowercase().trim().contains(vKata)
+            )
+        }
+        tempAktivitas2 = data as ArrayList<AktivitasModel>
         notifyDataSetChanged()
     }
 
@@ -44,7 +58,7 @@ class AktivitasAdapter(
     }
 
     override fun onBindViewHolder(holder: AktivitasViewHolder, position: Int) {
-        val aktivitas = tempAktivitas[position]
+        val aktivitas = tempAktivitas2[position]
         holder.apply {
             binding.apply {
                 tvJudul.text = aktivitas.judul
@@ -71,7 +85,7 @@ class AktivitasAdapter(
 
     }
 
-    override fun getItemCount() = if(home) 3 else tempAktivitas.size
+    override fun getItemCount() = if(home) 3 else tempAktivitas2.size
 
     private fun searchIdUrlVideo(urlVideo: String): String {
         var url = ""
