@@ -34,6 +34,9 @@ class MilestoneFragment : Fragment() {
     @Inject lateinit var loading: LoadingAlertDialog
     private lateinit var arrayListKategori: ArrayList<KategoriModel>
 
+    private var checkKategoriFirst = true
+    private var nameKategori = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -77,6 +80,9 @@ class MilestoneFragment : Fragment() {
 
                 override fun afterTextChanged(s: Editable?) {
                     adapterMilestone.searchData(s.toString())
+                    if(!checkKategoriFirst){
+                        adapterMilestone.searchKategori(nameKategori)
+                    }
                 }
 
             })
@@ -116,10 +122,15 @@ class MilestoneFragment : Fragment() {
     }
 
     private fun setAdapterKategori(data: ArrayList<KategoriModel>) {
-        Toast.makeText(requireContext(), "${data.size}", Toast.LENGTH_SHORT).show()
         adapterKategori = KategoriAdapter(data, object: OnClickItem.ClickKategori{
             override fun clickKategori(kategori: KategoriModel) {
-
+                checkKategoriFirst = kategori.id_kategori == 0
+                if(checkKategoriFirst){
+                    adapterMilestone.searchKategori("")
+                } else{
+                    adapterMilestone.searchKategori(kategori.kategori!!)
+                }
+                nameKategori = kategori.kategori!!
             }
         })
 
@@ -155,7 +166,6 @@ class MilestoneFragment : Fragment() {
 
     private fun setAdapterMilestone(data: ArrayList<MilestoneModel>) {
         adapterMilestone = MilestoneAdapter(data, object: OnClickItem.ClickMilestone{
-
             override fun clickMilestone(milestone: MilestoneModel) {
                 setUpdateMilestone(milestone.id_milestone!!)
             }

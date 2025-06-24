@@ -17,6 +17,8 @@ class MilestoneAdapter(
 ) : RecyclerView.Adapter<MilestoneAdapter.MilestoneViewHolder>() {
 
     private var tempMilestone = listMilestone
+    private var tempMilestone2 = tempMilestone
+
     @SuppressLint("NotifyDataSetChanged", "DefaultLocale")
     fun searchData(kata: String){
         val vKata = kata.lowercase().trim()
@@ -30,6 +32,18 @@ class MilestoneAdapter(
             )
         }
         tempMilestone = data as ArrayList<MilestoneModel>
+        tempMilestone2 = tempMilestone
+        notifyDataSetChanged()
+    }
+
+    fun searchKategori(kata: String){
+        val vKata = kata.lowercase().trim()
+        val data = tempMilestone.filter {
+            (
+                it.kategori?.kategori!!.lowercase().trim().contains(vKata)
+            )
+        }
+        tempMilestone2 = data as ArrayList<MilestoneModel>
         notifyDataSetChanged()
     }
 
@@ -44,7 +58,7 @@ class MilestoneAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MilestoneViewHolder, position: Int) {
-        val milestone = tempMilestone[position]
+        val milestone = tempMilestone2[position]
         holder.binding.apply {
             tvDeskripsi.text = milestone.deskripsi?.trim()
             tvKategori.text = milestone.kategori?.kategori
@@ -58,5 +72,5 @@ class MilestoneAdapter(
         }
     }
 
-    override fun getItemCount() = if(home) 3 else tempMilestone.size
+    override fun getItemCount() = if(home) 3 else tempMilestone2.size
 }
