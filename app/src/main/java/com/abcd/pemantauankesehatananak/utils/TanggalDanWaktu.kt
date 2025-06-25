@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -249,19 +250,22 @@ class TanggalDanWaktu {
     fun hitungUsiaDalamBulan(tanggal: String): Int {
         val arrayTanggal = tanggal.split("-")
         val tanggalLahir = arrayTanggal[2].trim().toInt()
-        val bulanLahir = arrayTanggal[2].trim().toInt()
-        val tahunLahir = arrayTanggal[2].trim().toInt()
+        val bulanLahir = arrayTanggal[1].trim().toInt()
+        val tahunLahir = arrayTanggal[0].trim().toInt()
 
-        var total = 0
+        val sekarangArrayTanggal = tanggalSekarangZonaMakassar().split("-")
+        val sekarangTanggalLahir = sekarangArrayTanggal[2].trim().toInt()
+        val sekarangBulanLahir = sekarangArrayTanggal[1].trim().toInt()
+        val sekarangTahunLahir = sekarangArrayTanggal[0].trim().toInt()
 
-        val calLahir = Calendar.getInstance().apply {
-            set(tahunLahir, bulanLahir - 1, tanggalLahir) // bulan 0-indexed
-        }
-        val calSekarang = Calendar.getInstance()
+//        val calSekarang = Calendar.getInstance()
+//        val tahunSelisih = calSekarang.get(Calendar.YEAR) - tahunLahir
+//        val bulanSelisih = calSekarang.get(Calendar.MONTH) - bulanLahir
+//        val hariSelisih = calSekarang.get(Calendar.DAY_OF_MONTH) - tanggalLahir
 
-        val tahunSelisih = calSekarang.get(Calendar.YEAR) - tahunLahir
-        val bulanSelisih = calSekarang.get(Calendar.MONTH) - bulanLahir
-        val hariSelisih = calSekarang.get(Calendar.DAY_OF_MONTH) - tanggalLahir
+        val tahunSelisih = sekarangTahunLahir - tahunLahir
+        val bulanSelisih = sekarangBulanLahir - bulanLahir
+        val hariSelisih = sekarangTanggalLahir - tanggalLahir
 
         var totalBulan = tahunSelisih * 12 + bulanSelisih
         if (hariSelisih < 0) totalBulan -= 1
