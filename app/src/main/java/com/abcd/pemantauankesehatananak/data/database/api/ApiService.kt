@@ -67,4 +67,20 @@ interface ApiService {
         @Field("id_milestone") id_milestone: Int,
     ): ResponseModel
 
+    @FormUrlEncoded
+    @POST("pemantauan-kesehatan-anak/api/post.php")
+    suspend fun postUpdateDataDiri(
+        @Field("post_update_data") post_update_data: String,
+        @Field("id_user") id_user: Int,
+        @Field("nama") nama: String,
+        @Field("nomor_hp") nomor_hp: String,
+        @Field("alamat") alamat: String,
+        @Field("nama_anak") nama_anak: String,
+        @Field("tanggal_lahir") tanggal_lahir: String,
+        @Field("jenis_kelamin") jenis_kelamin: String,
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("username_lama") username_lama: String,
+    ): ResponseModel
+
 }

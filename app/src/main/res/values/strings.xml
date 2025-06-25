@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Pemantauan Kesehatan Anak</string>
     <string name="app_name_login">Aplikasi Pemantauan Kesehatan Anak</string>
+    <string name="ket_klik_tanggal">Klik Untuk Tanggal Lahir</string>
 </resources>
