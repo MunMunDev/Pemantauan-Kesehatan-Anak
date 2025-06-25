@@ -99,14 +99,16 @@ class LoginActivity : AppCompatActivity() {
             setDataSharedPreferences(data)
         } else{
             Toast.makeText(this@LoginActivity, "Data tidak ditemukan \n" +
-                    "Pastikan No Bpjs/Username dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
+                    "Pastikan Username dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
         }
         loading.alertDialogCancel()
     }
 
     private fun setFailureFetchUser(message: String) {
+//        Toast.makeText(this@LoginActivity, "Data tidak ditemukan \n" +
+//                "Pastikan No Bpjs/Username dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
         Toast.makeText(this@LoginActivity, "Data tidak ditemukan \n" +
-                "Pastikan No Bpjs/Username dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
+                "Pastikan Username dan Password Terdaftar ada", Toast.LENGTH_SHORT).show()
         Log.d("LoginTAG", "setFailureFetchUser: $message")
         loading.alertDialogCancel()
     }
@@ -119,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
         try {
             data.apply {
                 sharedPreferencesLogin.setLogin(
-                    idUser!!, no_bpjs!!, nama!!, nomorHp!!, alamat!!, nama_anak!!,
+                    idUser!!, nama!!, nomorHp!!, alamat!!, nama_anak!!,
                     tanggal_lahir!!, jk!!, username!!, password!!, sebagai!!
                 )
                 Toast.makeText(this@LoginActivity, "Berhasil", Toast.LENGTH_SHORT).show()
