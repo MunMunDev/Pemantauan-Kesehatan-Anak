@@ -8,8 +8,8 @@ class UserModel (
     @SerializedName("id_user")
     var idUser: Int? = null,
 
-    @SerializedName("no_bpjs")
-    var no_bpjs: String? = null,
+    @SerializedName("no_ktp")
+    var no_ktp: String? = null,
 
     @SerializedName("nama")
     var nama: String? = null,
@@ -55,7 +55,7 @@ class UserModel (
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeValue(idUser)
-        parcel.writeString(no_bpjs)
+        parcel.writeString(no_ktp)
         parcel.writeString(nama)
         parcel.writeString(alamat)
         parcel.writeString(nomorHp)

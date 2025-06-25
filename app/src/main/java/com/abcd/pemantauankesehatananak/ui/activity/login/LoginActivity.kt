@@ -58,8 +58,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateInput(): Boolean {
         binding.apply {
-            if (etNomorBpjs.text.toString().isEmpty()) {
-                etNomorBpjs.error = "Nomor No BPJS / Username harus diisi"
+            if (etNomorKtp.text.toString().isEmpty()) {
+                etNomorKtp.error = "Nomor No BPJS / Username harus diisi"
                 return false
             }
             if (etPassword.text.toString().isEmpty()) {
@@ -71,13 +71,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun performLogin() {
-        var noBpjUsername: String
+        var noKtpUsername: String
         var password: String
         binding.apply {
-            noBpjUsername = etNomorBpjs.text.toString()
+            noKtpUsername = etNomorKtp.text.toString()
             password = etPassword.text.toString()
         }
-        fetchUser(noBpjUsername, password)
+        fetchUser(noKtpUsername, password)
     }
 
     private fun fetchUser(noBpjUsername: String, password: String){
@@ -121,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
         try {
             data.apply {
                 sharedPreferencesLogin.setLogin(
-                    idUser!!, nama!!, nomorHp!!, alamat!!, nama_anak!!,
+                    idUser!!, no_ktp!!, nama!!, nomorHp!!, alamat!!, nama_anak!!,
                     tanggal_lahir!!, jk!!, username!!, password!!, sebagai!!
                 )
                 Toast.makeText(this@LoginActivity, "Berhasil", Toast.LENGTH_SHORT).show()

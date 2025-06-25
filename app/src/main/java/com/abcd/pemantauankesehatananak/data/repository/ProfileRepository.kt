@@ -10,12 +10,12 @@ class ProfileRepository  @Inject constructor(
     private val api: ApiService
 ){
     suspend fun postDataDiri(
-        idUser:Int, nama: String, nomorHp: String, alamat: String,
+        idUser:Int, noKtp: String, nama: String, nomorHp: String, alamat: String,
         namaAnak: String, tanggalLahir: String, jenisKelamin: String,
         username: String, password: String, usernameLama: String
     ): ResponseModel {
         val data = api.postUpdateDataDiri(
-            "", idUser, nama, nomorHp, alamat, namaAnak,
+            "", idUser, noKtp, nama, nomorHp, alamat, namaAnak,
             tanggalLahir, jenisKelamin, username, password, usernameLama
         )
         return data

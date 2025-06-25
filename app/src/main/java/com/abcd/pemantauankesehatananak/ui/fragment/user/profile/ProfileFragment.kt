@@ -73,6 +73,7 @@ class ProfileFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setViewData(){
         binding.apply {
+            tvNoKtp.text = sharedPreferences.getNoKtp()
             tvNama.text = sharedPreferences.getNama()
             tvNomorHp.text = sharedPreferences.getNomorHp()
             tvAlamat.text = sharedPreferences.getAlamat()
@@ -103,6 +104,7 @@ class ProfileFragment : Fragment() {
         dialogInputan.show()
 
         view.apply {
+            etEditNoKtp.setText(sharedPreferences.getNoKtp())
             etEditNama.setText(sharedPreferences.getNama())
             etEditNomorHp.setText(sharedPreferences.getNomorHp())
             etEditAlamat.setText(sharedPreferences.getAlamat())
@@ -129,6 +131,10 @@ class ProfileFragment : Fragment() {
 
             btnSimpan.setOnClickListener {
                 var cek = false
+                if(etEditNoKtp.toString().isEmpty()){
+                    etEditNoKtp.error = "Tidak Boleh Kosong"
+                    cek = true
+                }
                 if(etEditNama.toString().isEmpty()){
                     etEditNama.error = "Tidak Boleh Kosong"
                     cek = true
@@ -159,6 +165,7 @@ class ProfileFragment : Fragment() {
                 }
 
                 if(!cek){
+                    val noKtp = etEditNoKtp.text.toString()
                     val nama = etEditNama.text.toString()
                     val nomorHp = etEditNomorHp.text.toString()
                     val alamat = etEditAlamat.text.toString()
@@ -170,12 +177,12 @@ class ProfileFragment : Fragment() {
                     val usernameLama = sharedPreferences.getUsername()
 
                     tempUser = UserModel(
-                        sharedPreferences.getIdUser(),
+                        sharedPreferences.getIdUser(), noKtp,
                         nama, nomorHp, alamat, namaAnak, tanggalLahir, jenisKelamin,
                         username, password, usernameLama
                     )
                     postUpdateData(
-                        sharedPreferences.getIdUser(), nama, nomorHp, alamat,
+                        sharedPreferences.getIdUser(), noKtp, nama, nomorHp, alamat,
                         namaAnak, tanggalLahir, jenisKelamin, username, password, usernameLama
                     )
                 }
@@ -189,6 +196,7 @@ class ProfileFragment : Fragment() {
 
     private fun postUpdateData(
         idUser: Int,
+        noKtp: String,
         nama: String,
         nomorHp: String,
         alamat: String,
@@ -200,7 +208,7 @@ class ProfileFragment : Fragment() {
         usernameLama: String
     ) {
         viewModel.postUpdateDataDiri(
-            idUser, nama, nomorHp, alamat, namaAnak, tanggalLahir,
+            idUser, noKtp, nama, nomorHp, alamat, namaAnak, tanggalLahir,
             jenisKelamin, username, password, usernameLama
         )
     }
@@ -220,7 +228,7 @@ class ProfileFragment : Fragment() {
             Toast.makeText(requireContext(), "Berhasil Update", Toast.LENGTH_SHORT).show()
             tempUser.apply {
                 sharedPreferences.setLogin(
-                    idUser!!, nama!!, nomorHp!!, alamat!!, nama_anak!!, tanggal_lahir!!, jk!!, username!!, password!!, "user"
+                    idUser!!, no_ktp!!, nama!!, nomorHp!!, alamat!!, nama_anak!!, tanggal_lahir!!, jk!!, username!!, password!!, "user"
                 )
             }
         } else{
