@@ -70,10 +70,10 @@ class DetailAktivitasActivity : AppCompatActivity() {
         lifecycleScope.launch {
             binding.apply {
                 setTopAppBar()
-                tvJudul.text = "Kategori : "+aktivitas.judul
+                tvJudul.text = aktivitas.judul
+                tvKategori.text = "Kategori : "+aktivitas.kategori!!.kategori
                 tvUsia.text = "Usia Minimal : ${aktivitas.usia_minimal} Bulan"
                 tvDeskripsi.text = aktivitas.deskripsi
-                tvKategori.text = aktivitas.kategori!!.kategori
             }
         }
     }
