@@ -4,7 +4,7 @@ import android.content.Context
 
 class SharedPreferencesLogin(val context: Context) {
     val keyIdUser = "keyIdUser"
-//    val keyNoBpjs = "keyNoBpjs"
+    val keyNoKtp = "keyNoKtp"
     val keyNama = "keyNama"
     val keyNomorHp = "keyNomorHp"
     val keyAlamat = "keyAlamat"
@@ -19,13 +19,13 @@ class SharedPreferencesLogin(val context: Context) {
     var editPref = sharedPref.edit()
 
     fun setLogin(
-        id_user:Int, nama:String, nomorHp:String, alamat:String, namaAnak:String,
+        id_user:Int, noKtp:String, nama:String, nomorHp:String, alamat:String, namaAnak:String,
         tanggalLahir:String, jenisKelamin:String, username:String,
         password:String, sebagai:String
     ){
         editPref.apply{
             putInt(keyIdUser, id_user)
-//            putString(keyNoBpjs, noBpjs)
+            putString(keyNoKtp, noKtp)
             putString(keyNama, nama)
             putString(keyNomorHp, nomorHp)
             putString(keyAlamat, alamat)
@@ -43,9 +43,9 @@ class SharedPreferencesLogin(val context: Context) {
     fun getIdUser(): Int{
         return sharedPref.getInt(keyIdUser, 0)
     }
-//    fun keyNoBpjs():String{
-//        return sharedPref.getString(keyNoBpjs, "").toString()
-//    }
+    fun getNoKtp():String{
+        return sharedPref.getString(keyNoKtp, "").toString()
+    }
     fun getNama():String{
         return sharedPref.getString(keyNama, "").toString()
     }

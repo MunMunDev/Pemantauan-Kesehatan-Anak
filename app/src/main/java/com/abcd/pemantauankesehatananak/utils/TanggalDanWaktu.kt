@@ -225,7 +225,7 @@ class TanggalDanWaktu {
         mDatePicker.show()
     }
 
-    fun hitungUsiaDalamBulan(tanggal: String): Int {
+    fun hitungUsiaDalamBulan2(tanggal: String): Int {
         val arrayTanggal = tanggal.split("-")
         val tanggalLahir = arrayTanggal[2].trim().toInt()
         val bulanLahir = arrayTanggal[2].trim().toInt()
@@ -239,6 +239,29 @@ class TanggalDanWaktu {
         val tahunSelisih = calSekarang.get(Calendar.YEAR) - calLahir.get(Calendar.YEAR)
         val bulanSelisih = calSekarang.get(Calendar.MONTH) - calLahir.get(Calendar.MONTH)
         val hariSelisih = calSekarang.get(Calendar.DAY_OF_MONTH) - calLahir.get(Calendar.DAY_OF_MONTH)
+
+        var totalBulan = tahunSelisih * 12 + bulanSelisih
+        if (hariSelisih < 0) totalBulan -= 1
+
+        return totalBulan
+    }
+
+    fun hitungUsiaDalamBulan(tanggal: String): Int {
+        val arrayTanggal = tanggal.split("-")
+        val tanggalLahir = arrayTanggal[2].trim().toInt()
+        val bulanLahir = arrayTanggal[2].trim().toInt()
+        val tahunLahir = arrayTanggal[2].trim().toInt()
+
+        var total = 0
+
+        val calLahir = Calendar.getInstance().apply {
+            set(tahunLahir, bulanLahir - 1, tanggalLahir) // bulan 0-indexed
+        }
+        val calSekarang = Calendar.getInstance()
+
+        val tahunSelisih = calSekarang.get(Calendar.YEAR) - tahunLahir
+        val bulanSelisih = calSekarang.get(Calendar.MONTH) - bulanLahir
+        val hariSelisih = calSekarang.get(Calendar.DAY_OF_MONTH) - tanggalLahir
 
         var totalBulan = tahunSelisih * 12 + bulanSelisih
         if (hariSelisih < 0) totalBulan -= 1

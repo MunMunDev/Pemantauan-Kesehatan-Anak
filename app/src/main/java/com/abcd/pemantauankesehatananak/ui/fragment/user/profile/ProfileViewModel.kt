@@ -7,10 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import com.abcd.pemantauankesehatananak.data.repository.ProfileRepository
 import com.abcd.pemantauankesehatananak.utils.network.UIState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ProfileViewModel  @Inject constructor(
     private val repository : ProfileRepository
 ): ViewModel(){
@@ -18,7 +20,7 @@ class ProfileViewModel  @Inject constructor(
     val getResponseUpdateDataDiri : LiveData<UIState<ResponseModel>> = _updateDataDiri
 
     fun postUpdateDataDiri(
-        idUser:Int, nama: String, nomorHp: String, alamat: String,
+        idUser:Int, noKtp: String, nama: String, nomorHp: String, alamat: String,
         namaAnak: String, tanggalLahir: String, jenisKelamin: String,
         username: String, password: String, usernameLama: String
     ){
@@ -27,7 +29,7 @@ class ProfileViewModel  @Inject constructor(
             delay(1_000)
             try {
                 val data = repository.postDataDiri(
-                    idUser, nama, alamat, nomorHp, namaAnak, tanggalLahir,
+                    idUser, noKtp, nama, alamat, nomorHp, namaAnak, tanggalLahir,
                     jenisKelamin, username, password, usernameLama
                 )
                 _updateDataDiri.postValue(UIState.Success(data))
