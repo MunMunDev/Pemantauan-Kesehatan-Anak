@@ -91,4 +91,23 @@ interface ApiService {
         @Field("username_lama") username_lama: String,
     ): ResponseModel
 
+    // Admin
+
+    // Kategori
+    @FormUrlEncoded
+    @POST("pemantauan-kesehatan-anak/api/post.php")
+    suspend fun postTambahKategori(
+        @Field("post_tambah_kategori") post_tambah_kategori: String,
+        @Field("kategori") kategori: String,
+        @Field("deskripsi") deskripsi: String,
+    ): ResponseModel
+    @FormUrlEncoded
+    @POST("pemantauan-kesehatan-anak/api/post.php")
+    suspend fun postUpdateKategori(
+        @Field("post_update_kategori") post_update_kategori: String,
+        @Field("id_kategori") id_kategori: Int,
+        @Field("kategori") kategori: String,
+        @Field("deskripsi") deskripsi: String,
+    ): ResponseModel
+
 }
