@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+    <group android:id="@+id/userListDrawer">
+        <item
+            android:id="@+id/adminNavDrawerHome"
+            android:title="Halaman Home"/>
+        <item
+            android:id="@+id/adminNavDrawerKategori"
+            android:title="Halaman Kategori"/>
+        <item
+            android:id="@+id/adminNavDrawerAktivitas"
+            android:title="Halaman Aktivitas"/>
+        <item
+            android:id="@+id/adminNavDrawerMilestone"
+            android:title="Halaman Milestone"/>
+        <item
+            android:id="@+id/adminNavDrawerAkun"
+            android:title="Halaman Akun"/>
+    </group>
+
+    <group android:id="@+id/adminDrawerBottom">
+        <item android:id="@+id/adminBtnKeluar"
+            android:title="Logout"/>
+    </group>
+</menu>
