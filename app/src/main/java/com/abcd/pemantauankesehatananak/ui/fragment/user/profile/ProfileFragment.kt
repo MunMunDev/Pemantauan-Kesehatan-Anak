@@ -1,6 +1,7 @@
 package com.abcd.pemantauankesehatananak.ui.fragment.user.profile
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import com.abcd.pemantauankesehatananak.data.model.UserModel
 import com.abcd.pemantauankesehatananak.databinding.AlertDialogAkunBinding
 import com.abcd.pemantauankesehatananak.databinding.FragmentProfileBinding
+import com.abcd.pemantauankesehatananak.ui.activity.login.LoginActivity
 import com.abcd.pemantauankesehatananak.utils.LoadingAlertDialog
 import com.abcd.pemantauankesehatananak.utils.SharedPreferencesLogin
 import com.abcd.pemantauankesehatananak.utils.TanggalDanWaktu
@@ -91,6 +93,11 @@ class ProfileFragment : Fragment() {
         binding.apply {
             btnUbahData.setOnClickListener {
                 setShowEditProfile()
+            }
+            btnLogout.setOnClickListener {
+                sharedPreferences.setLogout()
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+                requireActivity().finish()
             }
         }
     }
