@@ -23,4 +23,15 @@ interface OnClickItem {
         )
     }
 
+    // Admin
+    // Kategori
+    interface ClickAdminKategori{
+        fun clickDeskripsi(
+            deskripsi: String
+        )
+        fun clickSetting(
+            kategori: KategoriModel, it: View
+        )
+    }
+
 }
