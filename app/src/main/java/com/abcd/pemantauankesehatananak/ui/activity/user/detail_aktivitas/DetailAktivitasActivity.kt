@@ -176,6 +176,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
     private fun setSuccessPostUpdateSelesai(data: ResponseModel) {
         if(data.status == "0"){
             Toast.makeText(this@DetailAktivitasActivity, "Ditandai selesai", Toast.LENGTH_SHORT).show()
+            fetchRiwayatAktivitas()
         } else{
             Toast.makeText(this@DetailAktivitasActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
