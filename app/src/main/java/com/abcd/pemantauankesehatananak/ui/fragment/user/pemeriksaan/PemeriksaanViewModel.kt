@@ -21,7 +21,7 @@ class PemeriksaanViewModel @Inject constructor (
     private val _hasilPemeriksaan = MutableLiveData<UIState<ArrayList<PelayananModel>>>()
     val getPemeriksaan : LiveData<UIState<ArrayList<PelayananModel>>> = _hasilPemeriksaan
 
-    private fun fetchPemeriksaan(){
+    fun fetchPemeriksaan(){
         viewModelScope.launch {
             try {
                 _hasilPemeriksaan.postValue(UIState.Loading)
