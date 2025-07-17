@@ -3,6 +3,7 @@ package com.abcd.pemantauankesehatananak.data.database.api
 import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.KategoriModel
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
+import com.abcd.pemantauankesehatananak.data.model.PelayananModel
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import com.abcd.pemantauankesehatananak.data.model.RiwayatAktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.UserModel
@@ -44,6 +45,12 @@ interface ApiService {
         @Query("get_milestone") get_milestone: String,
         @Query("id_user") id_user: Int,
     ): ArrayList<MilestoneModel>
+
+    @GET("pemantauan-kesehatan-anak/api/get.php")
+    suspend fun getPemeriksaan(
+        @Query("get_pelayanan") get_pelayanan: String,
+    ): ArrayList<PelayananModel>
+
 
     // post
     //Register
