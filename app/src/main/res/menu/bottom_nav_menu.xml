@@ -13,6 +13,10 @@
         android:icon="@drawable/ic_perkembangan2"
         android:title="Perkembangan"/>
     <item
+        android:id="@+id/menu_pemeriksaan"
+        android:icon="@drawable/ic_pemeriksaan"
+        android:title="Pemeriksaan"/>
+    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_akun"
         android:title="Akun"/>
