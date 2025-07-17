@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class PemeriksaanRepository @Inject constructor(
     private val api: ApiService
 ) {
-    suspend fun getPemeriksaan(): ArrayList<PelayananModel> {
-        return api.getPemeriksaan("")
+    suspend fun getPemeriksaan(idUser: Int): ArrayList<PelayananModel> {
+        return api.getPemeriksaan("", idUser)
     }
 }

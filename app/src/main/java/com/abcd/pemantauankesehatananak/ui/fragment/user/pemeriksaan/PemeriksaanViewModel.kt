@@ -21,12 +21,12 @@ class PemeriksaanViewModel @Inject constructor (
     private val _hasilPemeriksaan = MutableLiveData<UIState<ArrayList<PelayananModel>>>()
     val getPemeriksaan : LiveData<UIState<ArrayList<PelayananModel>>> = _hasilPemeriksaan
 
-    fun fetchPemeriksaan(){
+    fun fetchPemeriksaan(idUser: Int){
         viewModelScope.launch {
             try {
                 _hasilPemeriksaan.postValue(UIState.Loading)
                 delay(1_000)
-                val data = repositoryPemeriksaan.getPemeriksaan()
+                val data = repositoryPemeriksaan.getPemeriksaan(idUser)
                 _hasilPemeriksaan.postValue(UIState.Success(data))
             } catch (ex: Exception) {
                 _hasilPemeriksaan.postValue(UIState.Failure("Error: ${ex.message}"))

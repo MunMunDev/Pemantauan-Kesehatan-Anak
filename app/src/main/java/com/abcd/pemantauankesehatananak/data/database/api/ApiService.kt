@@ -49,6 +49,7 @@ interface ApiService {
     @GET("pemantauan-kesehatan-anak/api/get.php")
     suspend fun getPemeriksaan(
         @Query("get_pelayanan") get_pelayanan: String,
+        @Query("id_user") id_user: Int,
     ): ArrayList<PelayananModel>
 
 
