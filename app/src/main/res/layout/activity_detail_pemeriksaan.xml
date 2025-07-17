@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.pemeriksaan.DetailPemeriksaanActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/myAppBar"
+            layout="@layout/appbar_nav_drawer"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hasil Pemeriksaan"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvHasil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Hasil Pemeriksaan yang ini tempat membahasnya apa saja hasil dari pemeriksaan terjadi"
+                android:lineSpacingExtra="2dp"
+                android:textSize="12sp"
+                android:textColor="@color/textColorBlack"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Keterangan Pemeriksaan"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvKeterangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Keterangan Pemeriksaan yang ini tempat membahasnya apa saja hasil dari pemeriksaan terjadi"
+                android:lineSpacingExtra="2dp"
+                android:textSize="12sp"
+                android:textColor="@color/textColorBlack"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Catatan Pemeriksaan"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvCatatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Catatan Pemeriksaan yang ini tempat membahasnya apa saja hasil dari pemeriksaan terjadi"
+                android:lineSpacingExtra="2dp"
+                android:textSize="12sp"
+                android:textColor="@color/textColorBlack"
+                android:textStyle="normal" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

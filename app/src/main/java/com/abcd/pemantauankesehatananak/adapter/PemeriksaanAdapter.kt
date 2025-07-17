@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abcd.pemantauankesehatananak.data.model.PelayananModel
 import com.abcd.pemantauankesehatananak.databinding.ItemListPemeriksaanBinding
+import com.abcd.pemantauankesehatananak.ui.activity.pemeriksaan.DetailPemeriksaanActivity
 import com.abcd.pemantauankesehatananak.ui.activity.user.main.MainActivity
 import com.abcd.pemantauankesehatananak.utils.TanggalDanWaktu
 
@@ -56,7 +57,7 @@ class PemeriksaanAdapter(
             }
 
             itemView.setOnClickListener {
-                val i = Intent(itemView.context, MainActivity::class.java)
+                val i = Intent(itemView.context, DetailPemeriksaanActivity::class.java)
                 i.putExtra("pemeriksaan", pemeriksaan)
                 itemView.context.startActivity(i)
             }
