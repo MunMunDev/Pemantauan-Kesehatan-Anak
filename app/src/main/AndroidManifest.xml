@@ -18,6 +18,9 @@
         android:theme="@style/Theme.PemantauanKesehatanAnak"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.pemeriksaan.DetailPemeriksaanActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.admin.milestone.AdminMilestoneActivity"
             android:exported="false" />
         <activity
