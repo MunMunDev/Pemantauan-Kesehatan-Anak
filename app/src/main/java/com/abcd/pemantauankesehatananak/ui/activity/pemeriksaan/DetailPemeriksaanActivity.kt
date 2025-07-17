@@ -32,6 +32,10 @@ class DetailPemeriksaanActivity : AppCompatActivity() {
             tvTitle.text = pelayanan?.pelayanan
             ivNavDrawer.visibility = View.GONE
             ivBack.visibility = View.VISIBLE
+
+            ivBack.setOnClickListener {
+                finish()
+            }
         }
     }
 
