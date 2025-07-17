@@ -6,6 +6,7 @@ import com.abcd.pemantauankesehatananak.R
 import com.abcd.pemantauankesehatananak.databinding.ActivityMainBinding
 import com.abcd.pemantauankesehatananak.ui.fragment.user.aktivitas.AktivitasFragment
 import com.abcd.pemantauankesehatananak.ui.fragment.user.home.HomeFragment
+import com.abcd.pemantauankesehatananak.ui.fragment.user.pemeriksaan.PemeriksaanFragment
 import com.abcd.pemantauankesehatananak.ui.fragment.user.perkembangan.MilestoneFragment
 import com.abcd.pemantauankesehatananak.ui.fragment.user.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
                     setMilestoneFragment()
                     true
                 }
+                R.id.menu_pemeriksaan->{
+                    setPemeriksaanFragment()
+                    true
+                }
                 R.id.menu_profile -> {
                     setProfileFragment()
                     true
@@ -65,6 +70,12 @@ class MainActivity : AppCompatActivity() {
     fun setMilestoneFragment(){
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, MilestoneFragment())
+            .commit()
+    }
+
+    fun setPemeriksaanFragment(){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, PemeriksaanFragment())
             .commit()
     }
 
