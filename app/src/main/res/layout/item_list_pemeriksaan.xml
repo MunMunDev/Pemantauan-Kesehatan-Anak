@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:paddingBottom="2dp"
+    android:backgroundTint="@color/white">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clIsi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="6dp">
+
+        <TextView
+            android:id="@+id/tvPelayanan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Nama Pelayanan"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="start"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvHasil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvPelayanan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="6dp"
+            android:text="ini adalah deskripsi. Akan berisi sebanyak 2 lines sehingga dapat dilihat isi apa saja yang ada di dalamnya"
+            android:textSize="12sp"
+            android:textColor="@color/abuabu_tua"
+            android:gravity="start"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvTanggalWaktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvHasil"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="4dp"
+            android:text="12 Desember 2025 - 13:00"
+            android:textSize="12sp"
+            android:textColor="@color/abuabu_tua"
+            android:textStyle="normal"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.2dp"
+        android:background="@color/abuabu_muda"
+        app:layout_constraintTop_toBottomOf="@+id/clIsi"
+        android:layout_marginTop="12dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
