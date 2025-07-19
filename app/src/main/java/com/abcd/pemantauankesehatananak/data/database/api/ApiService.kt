@@ -59,9 +59,13 @@ interface ApiService {
     @POST("pemantauan-kesehatan-anak/api/post.php")
     suspend fun postRegister(
         @Field("register_user") register_user: String,
+        @Field("no_ktp") no_ktp: String,
         @Field("nama") nama: String,
         @Field("alamat") alamat: String,
         @Field("nomor_hp") nomor_hp: String,
+        @Field("nama_anak") nama_anak: String,
+        @Field("tanggal_lahir") tanggal_lahir: String,
+        @Field("jk") jk: String,
         @Field("username") username: String,
         @Field("password") password: String,
     ): ResponseModel
