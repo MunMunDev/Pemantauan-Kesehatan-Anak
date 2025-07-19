@@ -19,14 +19,16 @@ class RegisterViewModel @Inject constructor(
     private var _postRegister = MutableLiveData<UIState<ResponseModel>>()
 
     fun postRegister(
-        nama: String, alamat: String, nomorHp: String, username: String, password: String,
+        noKtp: String, nama: String, alamat: String, nomorHp: String, namaAnak: String,
+        tanggalLahir: String, jk: String, username: String, password: String,
     ) {
         viewModelScope.launch {
             _postRegister.postValue(UIState.Loading)
             delay(1_000)
             try {
                 val postRegister = api.postRegister(
-                    "", nama, alamat, nomorHp, username, password
+                    "", noKtp, nama, alamat, nomorHp, namaAnak,
+                    tanggalLahir, jk, username, password
                 )
                 _postRegister.postValue(UIState.Success(postRegister))
             } catch (ex: Exception) {
