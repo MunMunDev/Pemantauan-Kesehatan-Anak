@@ -3,6 +3,7 @@ package com.abcd.pemantauankesehatananak.ui.fragment.user.profile
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -193,7 +194,7 @@ class ProfileFragment : Fragment() {
                         namaAnak, tanggalLahir, jenisKelamin, username, password, usernameLama
                     )
                 }
-
+                dialogInputan.dismiss()
             }
             btnBatal.setOnClickListener {
                 dialogInputan.dismiss()
@@ -237,6 +238,7 @@ class ProfileFragment : Fragment() {
                 sharedPreferences.setLogin(
                     idUser!!, no_ktp!!, nama!!, nomorHp!!, alamat!!, nama_anak!!, tanggal_lahir!!, jk!!, username!!, password!!, "user"
                 )
+                setViewData()
             }
         } else{
             Toast.makeText(requireContext(), data.message_response, Toast.LENGTH_SHORT).show()
@@ -252,10 +254,17 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showDatePicker(view: AlertDialogAkunBinding, tanggal: String) {
-        val listTanggal = tanggal.split("-")
-        val vTahun = listTanggal[0].trim().toInt()
-        val vBulan = listTanggal[1].trim().toInt()-1 // 0=jan, 1= feb, dst
-        val vTanggal = listTanggal[2].trim().toInt()
+        var vTahun = 2025
+        var vBulan = 1
+        var vTanggal = 1
+        try{
+            val listTanggal = tanggal.split("-")
+            vTahun = listTanggal[0].trim().toInt()
+            vBulan = listTanggal[1].trim().toInt()-1 // 0=jan, 1= feb, dst
+            vTanggal = listTanggal[2].trim().toInt()
+        } catch (ex: Exception){
+            Log.d("TAG", "showDatePicker: ${ex.message}")
+        }
 
         val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
         calendar.set(vTahun, vBulan, vTanggal) // Tahun, Bulan, Tanggal
@@ -266,11 +275,6 @@ class ProfileFragment : Fragment() {
             .setTitleText("Pilih Tanggal Lahir")
             .setSelection(selectedDateInMillis)
             .build()
-
-//        val datePicker = MaterialDatePicker.Builder.datePicker()
-//            .setTitleText("Pilih Tanggal Lahir")
-//            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-//            .build()
 
         datePicker.addOnPositiveButtonClickListener { selection ->
             selectedDate = Date(selection)
