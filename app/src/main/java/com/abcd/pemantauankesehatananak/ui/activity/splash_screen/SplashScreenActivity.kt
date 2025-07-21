@@ -26,10 +26,6 @@ class SplashScreenActivity : AppCompatActivity() {
                     // To User
                     startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
                     finish()
-                } else if(sharedPreferencesLogin.getSebagai() == "admin"){
-                    // To admin
-//                    startActivity(Intent(this@SplashScreenActivity, AdminMainActivity::class.java))
-                    finish()
                 } else{
                     startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
                     finish()
