@@ -21,9 +21,158 @@
             android:layout_marginTop="14dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvTitlePenanggungJawab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="Penanggung Jawab"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvTitikPenanggungJawab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitlePenanggungJawab"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitlePenanggungJawab"
+                    app:layout_constraintStart_toEndOf="@id/tvTitlePenanggungJawab"
+                    android:layout_marginStart="6dp"
+                    android:text=":"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvPenanggungJawab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitikPenanggungJawab"
+                    app:layout_constraintStart_toEndOf="@id/tvTitikPenanggungJawab"
+                    android:layout_marginStart="6dp"
+                    android:text=""
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tvTitleJabatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tvPenanggungJawab"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="2dp"
+                    android:text="Jabatan"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvTitikJabatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitleJabatan"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitleJabatan"
+                    app:layout_constraintStart_toStartOf="@id/tvTitikPenanggungJawab"
+                    android:text=":"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvJabatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitikJabatan"
+                    app:layout_constraintStart_toEndOf="@id/tvTitikJabatan"
+                    android:layout_marginStart="6dp"
+                    android:text=""
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tvTitleTanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tvJabatan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="2dp"
+                    android:text="Tanggal"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvTitikTanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitleTanggal"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitleTanggal"
+                    app:layout_constraintStart_toStartOf="@id/tvTitikPenanggungJawab"
+                    android:text=":"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvTanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitikTanggal"
+                    app:layout_constraintStart_toEndOf="@id/tvTitikTanggal"
+                    android:layout_marginStart="6dp"
+                    android:text=""
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tvTitleWaktu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tvTanggal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="2dp"
+                    android:text="Waktu"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvTitikWaktu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitleWaktu"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitleWaktu"
+                    app:layout_constraintStart_toStartOf="@id/tvTitikPenanggungJawab"
+                    android:text=":"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvWaktu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tvTitikWaktu"
+                    app:layout_constraintStart_toEndOf="@id/tvTitikWaktu"
+                    android:layout_marginStart="6dp"
+                    android:text=""
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/abuabu_tua"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Hasil Pemeriksaan"
                 android:textSize="16sp"
                 android:textColor="@color/black"

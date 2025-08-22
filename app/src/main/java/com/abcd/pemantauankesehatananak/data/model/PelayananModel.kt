@@ -23,6 +23,12 @@ class PelayananModel (
     @SerializedName("catatan")
     var catatan: String? = null,
 
+    @SerializedName("penanggung_jawab")
+    var penanggung_jawab: String? = null,
+
+    @SerializedName("jabatan")
+    var jabatan: String? = null,
+
     @SerializedName("tanggal")
     var tanggal: String? = null,
 
@@ -41,6 +47,8 @@ class PelayananModel (
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readParcelable(UserModel::class.java.classLoader)
     ) {
     }
@@ -52,6 +60,8 @@ class PelayananModel (
         parcel.writeString(hasil)
         parcel.writeString(keterangan)
         parcel.writeString(catatan)
+        parcel.writeString(penanggung_jawab)
+        parcel.writeString(jabatan)
         parcel.writeString(tanggal)
         parcel.writeString(waktu)
         parcel.writeParcelable(user, flags)
