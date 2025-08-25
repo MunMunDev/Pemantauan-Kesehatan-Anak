@@ -1,7 +1,12 @@
 package com.abcd.pemantauankesehatananak.ui.activity.user.detail_aktivitas
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -12,6 +17,7 @@ import com.abcd.pemantauankesehatananak.adapter.RiwayatAktivitasAdapter
 import com.abcd.pemantauankesehatananak.data.model.AktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import com.abcd.pemantauankesehatananak.data.model.RiwayatAktivitasModel
+import com.abcd.pemantauankesehatananak.data.model.YoutubeResultModel
 import com.abcd.pemantauankesehatananak.databinding.ActivityDetailAktivitasBinding
 import com.abcd.pemantauankesehatananak.utils.SharedPreferencesLogin
 import com.abcd.pemantauankesehatananak.utils.network.UIState
@@ -29,6 +35,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
     private lateinit var aktivitas: AktivitasModel
     private lateinit var sharedPreferences: SharedPreferencesLogin
     private var idAktivitas: Int = 0
+    private var idYoutube: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +47,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
         setButton()
         fetchRiwayatAktivitas()
         getRiwayatAktivitas()
+        getYoutubeResult()
         getUpdateSelesai()
     }
 
@@ -59,6 +67,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
         val i = intent
         if(i!=null){
             aktivitas = i.getParcelableExtra("aktivitas")!!
+            idYoutube = searchIdUrlVideo(aktivitas.video_url!!)
             idAktivitas = aktivitas.id_aktivitas!!
             loadDetailAktivitas(aktivitas)
             setYoutubVideo(aktivitas.video_url!!)
@@ -89,13 +98,28 @@ class DetailAktivitasActivity : AppCompatActivity() {
 
     private fun setYoutubVideo(videoUrl: String) {
         val videoId = searchIdUrlVideo(videoUrl)
-        lifecycle.addObserver(binding.youtubePlayerView)
 
-        binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo(videoId, 0f)
-            }
-        })
+        binding.youtubePlayerView.settings.javaScriptEnabled = true
+        binding.youtubePlayerView.loadData(
+            "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/$videoId\" frameborder=\"0\" allowfullscreen></iframe>",
+            "text/html",
+            "utf-8"
+        )
+        
+//        lifecycle.addObserver(binding.youtubePlayerView)
+//
+//        binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+//            override fun onReady(youTubePlayer: YouTubePlayer) {
+//                if (videoId != "") {
+//                    youTubePlayer.loadVideo(videoId, 0f)
+//                    Log.d("DetailTAG", "onReady: $videoId")
+//                } else {
+//                    Toast.makeText(this@DetailAktivitasActivity, "Video ID tidak valid", Toast.LENGTH_SHORT).show()
+//                    // fallback buka di YouTube app
+//                    openYoutubeVideo(this@DetailAktivitasActivity, videoId)
+//                }
+//            }
+//        })
     }
 
     private fun searchIdUrlVideo(urlVideo: String): String {
@@ -122,7 +146,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
     }
 
     private fun fetchRiwayatAktivitas() {
-        viewModel.loadData(sharedPreferences.getIdUser(), idAktivitas)
+        viewModel.loadData(sharedPreferences.getIdUser(), idAktivitas, idYoutube)
     }
 
     private fun getRiwayatAktivitas() {
@@ -141,7 +165,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
         } else{
             binding.tvTitleRiwayatAktivitas.visibility = View.GONE
 
-            Toast.makeText(this@DetailAktivitasActivity, "${sharedPreferences.getIdUser()}-$idAktivitas", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@DetailAktivitasActivity, "Tidak ada Riwayat aktivitas", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -158,6 +182,37 @@ class DetailAktivitasActivity : AppCompatActivity() {
         binding.tvTitleRiwayatAktivitas.visibility = View.GONE
     }
 
+    private fun getYoutubeResult() {
+        viewModel.getYoutubeResult.observe(this@DetailAktivitasActivity){result->
+            when(result){
+                is UIState.Loading-> {}
+                is UIState.Success-> setSuccessFetchYoutubResult(result.data)
+                is UIState.Failure-> setFailureFetchYoutubResult(result.message)
+            }
+        }
+    }
+
+    private fun setSuccessFetchYoutubResult(data: YoutubeResultModel) {
+        if(data.items!!.isNotEmpty()){
+            binding.apply {
+                tvYoutubeChannelTitle.text = data.items!![0].snippet?.channelTitle
+                tvYoutubeTitle.text = data.items!![0].snippet?.title
+
+                tvYoutubeChannelTitle.setOnClickListener {
+                    openYoutubeChannel(this@DetailAktivitasActivity, data.items!![0].snippet?.channelId!!)
+                }
+                tvYoutubeTitle.setOnClickListener{
+                    openYoutubeVideo(this@DetailAktivitasActivity, data.items!![0].id!!)
+                }
+            }
+        } else{
+            Toast.makeText(this@DetailAktivitasActivity, "Tidak di dapat referensi", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setFailureFetchYoutubResult(message: String) {
+        Toast.makeText(this@DetailAktivitasActivity, message, Toast.LENGTH_SHORT).show()
+    }
 
     private fun postUpdateSelesai() {
         viewModel.postUpdateSelesai(sharedPreferences.getIdUser(), idAktivitas)
@@ -184,5 +239,27 @@ class DetailAktivitasActivity : AppCompatActivity() {
 
     private fun setFailurePostUpdateSelesai(message: String) {
         Toast.makeText(this@DetailAktivitasActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun openYoutubeChannel(context: Context, channelId: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/$channelId"))
+        intent.setPackage("com.google.android.youtube") // coba buka langsung di YouTube app
+        try {
+            context.startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            // fallback buka browser kalau YouTube app tidak ada
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/$channelId")))
+        }
+    }
+
+    fun openYoutubeVideo(context: Context, videoId: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$videoId"))
+        intent.setPackage("com.google.android.youtube") // coba buka di aplikasi YouTube
+        try {
+            context.startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            // fallback ke browser kalau YouTube app tidak ada
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$videoId")))
+        }
     }
 }

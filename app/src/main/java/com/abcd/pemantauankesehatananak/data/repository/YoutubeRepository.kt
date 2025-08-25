@@ -4,28 +4,14 @@ import com.abcd.pemantauankesehatananak.data.database.api.ApiService
 import com.abcd.pemantauankesehatananak.data.model.KategoriModel
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
-import com.abcd.pemantauankesehatananak.data.model.RiwayatAktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.YoutubeResultModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RiwayatAktivitasRepository @Inject constructor(
+class YoutubeRepository @Inject constructor(
     private val api: ApiService
 ) {
-    suspend fun getRiwayatAktivitas(
-        idUser: Int, idAktivitas: Int
-    ): ArrayList<RiwayatAktivitasModel> {
-        return api.getRiwayatAktivitas("", idUser, idAktivitas)
-    }
-
-    suspend fun postUpdateCheck(
-        idUser: Int,
-        idAktivitas: Int,
-    ): ResponseModel {
-        return api.postUpdateCheckAktivitas("", idUser, idAktivitas)
-    }
-
     suspend fun getYoutube(
         id: String,
     ): YoutubeResultModel {
@@ -34,4 +20,5 @@ class RiwayatAktivitasRepository @Inject constructor(
             id, "AIzaSyCRf2CYgVGWMig8sLklMHFitzLMSdTv6kc"
         )
     }
+
 }
