@@ -129,7 +129,7 @@ class ProfileFragment : Fragment() {
                 showDatePicker(view, sharedPreferences.getTanggalLahir())
             }
 
-            var selectedGender = ""
+            var selectedGender = sharedPreferences.getJenisKelamin()
             rgGender.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     R.id.rbLakiLaki -> selectedGender = "Laki-laki"
@@ -186,7 +186,7 @@ class ProfileFragment : Fragment() {
 
                     tempUser = UserModel(
                         sharedPreferences.getIdUser(), noKtp,
-                        nama, nomorHp, alamat, namaAnak, tanggalLahir, jenisKelamin,
+                        nama, alamat, nomorHp, namaAnak, jenisKelamin, tanggalLahir,
                         username, password, usernameLama
                     )
                     postUpdateData(
@@ -236,7 +236,7 @@ class ProfileFragment : Fragment() {
             Toast.makeText(requireContext(), "Berhasil Update", Toast.LENGTH_SHORT).show()
             tempUser.apply {
                 sharedPreferences.setLogin(
-                    idUser!!, no_ktp!!, nama!!, nomorHp!!, alamat!!, nama_anak!!, tanggal_lahir!!, jk!!, username!!, password!!, "user"
+                    idUser!!, no_ktp!!, nama!!, alamat!!, nomorHp!!, nama_anak!!, jk!!, tanggal_lahir!!, username!!, password!!, "user"
                 )
                 setViewData()
             }

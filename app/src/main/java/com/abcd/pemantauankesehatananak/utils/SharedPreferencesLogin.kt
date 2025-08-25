@@ -19,8 +19,8 @@ class SharedPreferencesLogin(val context: Context) {
     var editPref = sharedPref.edit()
 
     fun setLogin(
-        id_user:Int, noKtp:String, nama:String, nomorHp:String, alamat:String, namaAnak:String,
-        tanggalLahir:String, jenisKelamin:String, username:String,
+        id_user:Int, noKtp:String, nama:String, alamat:String, nomorHp:String, namaAnak:String,
+        jenisKelamin:String, tanggalLahir:String, username:String,
         password:String, sebagai:String
     ){
         editPref.apply{
