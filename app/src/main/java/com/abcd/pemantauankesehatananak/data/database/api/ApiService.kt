@@ -7,6 +7,7 @@ import com.abcd.pemantauankesehatananak.data.model.PelayananModel
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
 import com.abcd.pemantauankesehatananak.data.model.RiwayatAktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.UserModel
+import com.abcd.pemantauankesehatananak.data.model.YoutubeResultModel
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -51,6 +52,13 @@ interface ApiService {
         @Query("get_pelayanan") get_pelayanan: String,
         @Query("id_user") id_user: Int,
     ): ArrayList<PelayananModel>
+
+    @GET("https://www.googleapis.com/youtube/v3/videos")
+    suspend fun getYoutube(
+        @Query("part") part: String = "snippet",
+        @Query("id") id: String,
+        @Query("key") key: String,
+    ): YoutubeResultModel
 
 
     // post

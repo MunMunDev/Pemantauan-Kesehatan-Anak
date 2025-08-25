@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.abcd.pemantauankesehatananak.data.model.RiwayatAktivitasModel
 import com.abcd.pemantauankesehatananak.data.model.MilestoneModel
 import com.abcd.pemantauankesehatananak.data.model.ResponseModel
+import com.abcd.pemantauankesehatananak.data.model.YoutubeResultModel
 import com.abcd.pemantauankesehatananak.data.repository.MilestoneRepository
 import com.abcd.pemantauankesehatananak.data.repository.RiwayatAktivitasRepository
+import com.abcd.pemantauankesehatananak.data.repository.YoutubeRepository
 import com.abcd.pemantauankesehatananak.utils.network.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -26,6 +28,9 @@ class DetailAktivitasViewModel @Inject constructor(
     private val _updateSelesaiHariIni = MutableLiveData<UIState<ResponseModel>>()
     val getUpdateSelesai: LiveData<UIState<ResponseModel>> = _updateSelesaiHariIni
 
+    private val _youtubeResult = MutableLiveData<UIState<YoutubeResultModel>>()
+    val getYoutubeResult: LiveData<UIState<YoutubeResultModel>> = _youtubeResult
+
     private fun fetchRiwayatAktivitas(
         idUser: Int, idAktivitas: Int
     ){
@@ -41,11 +46,28 @@ class DetailAktivitasViewModel @Inject constructor(
         }
     }
 
+    private fun fetchYoutube(
+        id: String
+    ){
+        viewModelScope.launch {
+            try {
+                _youtubeResult.postValue(UIState.Loading)
+                delay(1_000)
+                val data = repository.getYoutube(id)
+                _youtubeResult.postValue(UIState.Success(data))
+            } catch (ex: Exception) {
+                _youtubeResult.postValue(UIState.Failure("Error: ${ex.message}"))
+            }
+        }
+    }
+
     fun loadData(
         idUser: Int,
         idAktivitas: Int,
+        idYoutube: String
     ) {
         fetchRiwayatAktivitas(idUser, idAktivitas)
+        fetchYoutube(idYoutube)
     }
 
     fun postUpdateSelesai(
