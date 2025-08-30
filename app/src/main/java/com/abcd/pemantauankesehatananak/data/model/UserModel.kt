@@ -32,6 +32,9 @@ class UserModel (
     @SerializedName("username")
     var username: String? = null,
 
+    @SerializedName("email")
+    var email: String? = null,
+
     @SerializedName("password")
     var password: String? = null,
 
@@ -40,6 +43,7 @@ class UserModel (
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -63,6 +67,7 @@ class UserModel (
         parcel.writeString(jk)
         parcel.writeString(tanggal_lahir)
         parcel.writeString(username)
+        parcel.writeString(email)
         parcel.writeString(password)
         parcel.writeString(sebagai)
     }
