@@ -278,7 +278,7 @@ class ProfileFragment : Fragment() {
 
         datePicker.addOnPositiveButtonClickListener { selection ->
             selectedDate = Date(selection)
-            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             view.etEditTanggalLahir.text = dateFormat.format(selectedDate!!)
         }
 
