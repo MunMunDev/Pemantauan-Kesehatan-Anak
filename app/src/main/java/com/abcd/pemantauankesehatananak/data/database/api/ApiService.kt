@@ -60,6 +60,12 @@ interface ApiService {
         @Query("key") key: String,
     ): YoutubeResultModel
 
+    @GET("pemantauan-kesehatan-anak/api/get.php")
+    suspend fun getLupaPassword(
+        @Query("get_lupa_password") get_lupa_password: String,
+        @Query("email") email: String,
+    ): UserModel
+
 
     // post
     //Register
@@ -121,6 +127,7 @@ interface ApiService {
         @Field("kategori") kategori: String,
         @Field("deskripsi") deskripsi: String,
     ): ResponseModel
+
     @FormUrlEncoded
     @POST("pemantauan-kesehatan-anak/api/post.php")
     suspend fun postUpdateKategori(
@@ -128,6 +135,15 @@ interface ApiService {
         @Field("id_kategori") id_kategori: Int,
         @Field("kategori") kategori: String,
         @Field("deskripsi") deskripsi: String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("pemantauan-kesehatan-anak/api/kirim-chat.php")
+    suspend fun postKirimUsernamePassword(
+        @Field("send_email_password") send_email_password: String,
+        @Field("email") email: String,
+        @Field("username") username: String,
+        @Field("password") password: String,
     ): ResponseModel
 
 }

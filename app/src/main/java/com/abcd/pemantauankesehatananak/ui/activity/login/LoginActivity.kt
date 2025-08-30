@@ -4,14 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.abcd.pemantauankesehatananak.R
 import com.abcd.pemantauankesehatananak.data.model.UserModel
 import com.abcd.pemantauankesehatananak.databinding.ActivityLoginBinding
+import com.abcd.pemantauankesehatananak.ui.activity.forget_passsword.LupaPasswordActivity
 import com.abcd.pemantauankesehatananak.ui.activity.register.RegisterActivity
 import com.abcd.pemantauankesehatananak.ui.activity.user.main.MainActivity
 import com.abcd.pemantauankesehatananak.utils.LoadingAlertDialog
@@ -32,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupListeners()
+        setButton()
         setSharedPreferencesLogin()
         getUser()
     }
@@ -42,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferencesLogin = SharedPreferencesLogin(this@LoginActivity)
     }
 
-    private fun setupListeners() {
+    private fun setButton() {
         binding.apply {
             btnLogin.setOnClickListener {
                 if (validateInput()) {
@@ -52,6 +49,10 @@ class LoginActivity : AppCompatActivity() {
 
             tvRegister.setOnClickListener {
                 navigateToRegister()
+            }
+
+            tvLupaPassword.setOnClickListener {
+                startActivity(Intent(this@LoginActivity, LupaPasswordActivity::class.java))
             }
         }
     }
