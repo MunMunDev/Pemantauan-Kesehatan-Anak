@@ -29,7 +29,7 @@ class ProfileViewModel  @Inject constructor(
             delay(1_000)
             try {
                 val data = repository.postDataDiri(
-                    idUser, noKtp, nama, alamat, nomorHp, namaAnak, tanggalLahir,
+                    idUser, noKtp, nama, nomorHp, alamat, namaAnak, tanggalLahir,
                     jenisKelamin, username, password, usernameLama
                 )
                 _updateDataDiri.postValue(UIState.Success(data))
