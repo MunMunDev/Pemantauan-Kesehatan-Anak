@@ -236,7 +236,7 @@ class ProfileFragment : Fragment() {
             Toast.makeText(requireContext(), "Berhasil Update", Toast.LENGTH_SHORT).show()
             tempUser.apply {
                 sharedPreferences.setLogin(
-                    idUser!!, no_ktp!!, nama!!, alamat!!, nomorHp!!, nama_anak!!, jk!!, tanggal_lahir!!, username!!, password!!, "user"
+                    idUser!!, no_ktp!!, nama!!, alamat!!, nomorHp!!, nama_anak!!, jk!!, tanggal_lahir!!, email!!, username!!, password!!, "user"
                 )
                 setViewData()
             }
