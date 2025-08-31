@@ -20,7 +20,7 @@ class RegisterViewModel @Inject constructor(
 
     fun postRegister(
         noKtp: String, nama: String, alamat: String, nomorHp: String, namaAnak: String,
-        tanggalLahir: String, jk: String, username: String, password: String,
+        tanggalLahir: String, jk: String, email: String, username: String, password: String,
     ) {
         viewModelScope.launch {
             _postRegister.postValue(UIState.Loading)
@@ -28,7 +28,7 @@ class RegisterViewModel @Inject constructor(
             try {
                 val postRegister = api.postRegister(
                     "", noKtp, nama, alamat, nomorHp, namaAnak,
-                    tanggalLahir, jk, username, password
+                    tanggalLahir, jk, email, username, password
                 )
                 _postRegister.postValue(UIState.Success(postRegister))
             } catch (ex: Exception) {

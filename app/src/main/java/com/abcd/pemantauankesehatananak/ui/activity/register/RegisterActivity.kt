@@ -103,6 +103,10 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this@RegisterActivity, "Pilih Jenis Kelamin Anak", Toast.LENGTH_SHORT).show()
                 return false
             }
+            if (etEmail.text.toString().isEmpty()) {
+                etEmail.error = "Email harus diisi"
+                return false
+            }
             if (etUsername.text.toString().isEmpty()) {
                 etUsername.error = "Username harus diisi"
                 return false
@@ -124,20 +128,22 @@ class RegisterActivity : AppCompatActivity() {
             val namaAnak = etNamaAnak.text.toString()
             val tanggaLahir = btnTanggalLahir.text.toString()
             val username = etUsername.text.toString()
+            val email = etEmail.text.toString()
             val password = etPassword.text.toString()
 
             postRegister(
-                noKtp, nama, alamat, nomorHp, namaAnak, tanggaLahir, selectedGender!!, username, password
+                noKtp, nama, alamat, nomorHp, namaAnak, tanggaLahir,
+                selectedGender!!, email, username, password
             )
         }
     }
 
     private fun postRegister(
-       noKtp: String, nama: String, alamat: String, nomorHp: String, namaAnak: String,
-       tanggalLahir: String, jk: String, username: String, password: String,
+       noKtp: String, nama: String, alamat: String, nomorHp: String, namaAnak: String, tanggalLahir: String,
+       jk: String, email: String, username: String, password: String,
     ){
         viewModel.postRegister(
-            noKtp, nama, alamat, nomorHp, namaAnak, tanggalLahir, jk, username, password
+            noKtp, nama, alamat, nomorHp, namaAnak, tanggalLahir, jk, email, username, password
         )
     }
 

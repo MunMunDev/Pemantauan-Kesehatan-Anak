@@ -123,7 +123,7 @@ class LoginActivity : AppCompatActivity() {
             data.apply {
                 sharedPreferencesLogin.setLogin(
                     idUser!!, no_ktp!!, nama!!, alamat!!, nomorHp!!, nama_anak!!,
-                    jk!!, tanggal_lahir!!, username!!, password!!, sebagai!!
+                    jk!!, tanggal_lahir!!, email!!, username!!, password!!, sebagai!!
                 )
                 Toast.makeText(this@LoginActivity, "Berhasil", Toast.LENGTH_SHORT).show()
                 moveToMainActivity(sebagai!!)
