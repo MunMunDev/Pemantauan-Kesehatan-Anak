@@ -22,7 +22,7 @@ class ProfileViewModel  @Inject constructor(
     fun postUpdateDataDiri(
         idUser:Int, noKtp: String, nama: String, nomorHp: String, alamat: String,
         namaAnak: String, tanggalLahir: String, jenisKelamin: String,
-        username: String, password: String, usernameLama: String
+        email: String, username: String, password: String, usernameLama: String
     ){
         viewModelScope.launch {
             _updateDataDiri.postValue(UIState.Loading)
@@ -30,7 +30,7 @@ class ProfileViewModel  @Inject constructor(
             try {
                 val data = repository.postDataDiri(
                     idUser, noKtp, nama, nomorHp, alamat, namaAnak, tanggalLahir,
-                    jenisKelamin, username, password, usernameLama
+                    jenisKelamin, email, username, password, usernameLama
                 )
                 _updateDataDiri.postValue(UIState.Success(data))
             } catch (ex: Exception){
