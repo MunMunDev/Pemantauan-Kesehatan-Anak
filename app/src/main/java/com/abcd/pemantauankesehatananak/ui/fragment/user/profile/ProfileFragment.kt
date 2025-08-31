@@ -85,6 +85,7 @@ class ProfileFragment : Fragment() {
             tvTanggalLahir.text = sharedPreferences.getTanggalLahir()
             tvUsia.text = "${tanggalDanWaktu.hitungUsiaDalamBulan(sharedPreferences.getTanggalLahir())} Bulan"
             tvJenisKelamin.text = sharedPreferences.getJenisKelamin()
+            tvEmail.text = sharedPreferences.getEmail()
             tvUsername.text = sharedPreferences.getUsername()
             tvPassword.text = sharedPreferences.getPassword()
         }
@@ -118,6 +119,7 @@ class ProfileFragment : Fragment() {
             etEditAlamat.setText(sharedPreferences.getAlamat())
             etEditNamaAnak.setText(sharedPreferences.getNamaAnak())
             etEditTanggalLahir.text = sharedPreferences.getTanggalLahir()
+            etEditEmail.setText(sharedPreferences.getEmail())
             etEditUsername.setText(sharedPreferences.getUsername())
             etEditPassword.setText(sharedPreferences.getPassword())
             when(sharedPreferences.getJenisKelamin()){
@@ -163,6 +165,10 @@ class ProfileFragment : Fragment() {
                     etEditTanggalLahir.error = "Tidak Boleh Kosong"
                     cek = true
                 }
+                if(etEditEmail.toString().isEmpty()){
+                    etEditEmail.error = "Tidak Boleh Kosong"
+                    cek = true
+                }
                 if(etEditUsername.toString().isEmpty()){
                     etEditUsername.error = "Tidak Boleh Kosong"
                     cek = true
@@ -180,6 +186,7 @@ class ProfileFragment : Fragment() {
                     val namaAnak = etEditNamaAnak.text.toString()
                     val tanggalLahir = etEditTanggalLahir.text.toString()
                     val jenisKelamin = selectedGender
+                    val email = etEditEmail.text.toString()
                     val username = etEditUsername.text.toString()
                     val password = etEditPassword.text.toString()
                     val usernameLama = sharedPreferences.getUsername()
@@ -187,11 +194,11 @@ class ProfileFragment : Fragment() {
                     tempUser = UserModel(
                         sharedPreferences.getIdUser(), noKtp,
                         nama, alamat, nomorHp, namaAnak, jenisKelamin, tanggalLahir,
-                        username, password, usernameLama
+                        email, username, password, usernameLama
                     )
                     postUpdateData(
                         sharedPreferences.getIdUser(), noKtp, nama, nomorHp, alamat,
-                        namaAnak, tanggalLahir, jenisKelamin, username, password, usernameLama
+                        namaAnak, tanggalLahir, jenisKelamin, email, username, password, usernameLama
                     )
                 }
                 dialogInputan.dismiss()
@@ -211,13 +218,14 @@ class ProfileFragment : Fragment() {
         namaAnak: String,
         tanggalLahir: String,
         jenisKelamin: String,
+        email: String,
         username: String,
         password: String,
         usernameLama: String
     ) {
         viewModel.postUpdateDataDiri(
             idUser, noKtp, nama, nomorHp, alamat, namaAnak, tanggalLahir,
-            jenisKelamin, username, password, usernameLama
+            jenisKelamin, email, username, password, usernameLama
         )
     }
 

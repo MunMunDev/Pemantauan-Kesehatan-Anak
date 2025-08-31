@@ -113,6 +113,7 @@ interface ApiService {
         @Field("nama_anak") nama_anak: String,
         @Field("tanggal_lahir") tanggal_lahir: String,
         @Field("jk") jk: String,
+        @Field("email") email: String,
         @Field("username") username: String,
         @Field("password") password: String,
         @Field("username_lama") username_lama: String,
